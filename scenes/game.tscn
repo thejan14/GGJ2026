@@ -17,7 +17,7 @@
 script = ExtResource("1_yqjtg")
 cam = NodePath("Camera2D")
 board = NodePath("Board")
-shipsPlayer1 = [NodePath("Ship"), NodePath("")]
+shipsPlayer1 = [NodePath("Ship")]
 
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
 
