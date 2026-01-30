@@ -2,8 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bg5ptytfsutot" path="res://scenes/board.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://d1beq52whxn1v" path="res://scripts/game_manager.gd" id="1_yqjtg"]
-[ext_resource type="Script" uid="uid://byqh4w5ryvvhd" path="res://scripts/ship.gd" id="3_lbhrr"]
+[ext_resource type="Script" path="res://scripts/ship.gd" id="3_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://bpyv3fg0f1bca" path="res://art/x.png" id="3_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://b35op3blg8wfj" path="res://art/ship3.png" id="4_iywne"]
+[ext_resource type="Script" uid="uid://basevvjj3j3jf" path="res://scripts/marker_button.gd" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://c8ct6mnuuadla" path="res://scenes/marker_ship.tscn" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="6_gee14"]
+[ext_resource type="PackedScene" uid="uid://ci5moltxb2smp" path="res://scenes/marker_land.tscn" id="7_gee14"]
 
 [node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "shipsPlayer1")]
 script = ExtResource("1_yqjtg")
@@ -22,3 +27,21 @@ sprite = NodePath("Ship3")
 
 [node name="Ship3" type="Sprite2D" parent="Ship" unique_id=796000821]
 texture = ExtResource("4_iywne")
+
+[node name="Selection" type="VBoxContainer" parent="." unique_id=372132904]
+offset_left = 45.0
+offset_top = 88.0
+offset_right = 85.0
+offset_bottom = 172.0
+
+[node name="ShipMarkerButton" type="TextureButton" parent="Selection" unique_id=713387751]
+layout_mode = 2
+texture_normal = ExtResource("3_u5sy4")
+script = ExtResource("4_lbhrr")
+marker_scene = ExtResource("5_p57ef")
+
+[node name="LandMarkerButton" type="TextureButton" parent="Selection" unique_id=463897540]
+layout_mode = 2
+texture_normal = ExtResource("6_gee14")
+script = ExtResource("4_lbhrr")
+marker_scene = ExtResource("7_gee14")

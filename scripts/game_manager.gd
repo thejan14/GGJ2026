@@ -10,7 +10,8 @@ func _input(event: InputEvent) -> void:
 		print(board.world_to_cell(board.get_global_mouse_position()))
 		moveShips(shipsPlayer1)
 	if event.is_action_pressed("Cancel"):
-		get_tree().quit()
+		if MouseSelection.current_selection != null:
+			MouseSelection.deselect()
 
 func _ready() -> void:
 	cam.make_current()
