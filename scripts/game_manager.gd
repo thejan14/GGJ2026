@@ -7,7 +7,6 @@ extends Node
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select"):
-		print(board.world_to_cell(board.get_global_mouse_position()))
 		moveShips(shipsPlayer1)
 	if event.is_action_pressed("Cancel"):
 		if MouseSelection.current_selection != null:

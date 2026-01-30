@@ -8,6 +8,12 @@ const CELL_SIZE: int = 40
 var cells: Array[Array] = []
 var highlightCells: Array[Vector2i]
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Select"):
+		var cell_pos := world_to_cell(get_global_mouse_position())
+		if isValidPos(cell_pos) and MouseSelection.current_selection is Ship:
+			pass
+
 func _process(delta: float) -> void:
 	for row in cells:
 		for cell in row:

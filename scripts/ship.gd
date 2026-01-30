@@ -2,6 +2,8 @@ class_name Ship
 
 extends Node2D
 
+enum STATE { PREVIEW, PLACED }
+
 const DIM:int = 3 
 @export var dir:Vector2i = Vector2i(0,-1)
 
@@ -19,3 +21,6 @@ func _process(delta: float) -> void:
 func flip() ->void:
 	dir *= -1
 	rotation+= PI
+
+func set_state(state: STATE) -> void:
+	modulate = Color(modulate, 0.5) if state == STATE.PREVIEW else Color(modulate, 1.0)

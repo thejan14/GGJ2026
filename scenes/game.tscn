@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c8ct6mnuuadla" path="res://scenes/marker_ship.tscn" id="5_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://ci5moltxb2smp" path="res://scenes/marker_land.tscn" id="7_gee14"]
+[ext_resource type="Texture2D" uid="uid://cy63u4dvqwwm1" path="res://art/Ship_3.png" id="10_vtaks"]
+[ext_resource type="Script" uid="uid://ckjckdloxs5e8" path="res://scripts/ship_button.gd" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://d0oaq8r1tik6s" path="res://scenes/ship.tscn" id="12_dinhu"]
 
 [node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "shipsPlayer1")]
 script = ExtResource("1_yqjtg")
@@ -45,3 +48,20 @@ layout_mode = 2
 texture_normal = ExtResource("6_gee14")
 script = ExtResource("4_lbhrr")
 marker_scene = ExtResource("7_gee14")
+
+[node name="Objects" type="Control" parent="." unique_id=753107533]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -576.0
+offset_bottom = 407.0
+grow_horizontal = 0
+
+[node name="ShipButton" type="TextureButton" parent="Objects" unique_id=673901906]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("10_vtaks")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("12_dinhu")
