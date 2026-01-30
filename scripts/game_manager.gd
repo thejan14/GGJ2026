@@ -15,11 +15,13 @@ func _input(event: InputEvent) -> void:
 
 func _ready() -> void:
 	cam.make_current()
-	
+
+func isfree(pos : Vector2i) -> bool :
+	return !shipsPlayer1.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))
 
 func move(ship : Ship)-> void:
 	var nextPos = ship.positions[0] + ship.dir
-	if board.isValidPos(nextPos):
+	if board.isValidPos(nextPos) && isfree(nextPos):
 		ship.positions.assign(ship.positions.map(func(p)->Vector2i: return p + ship.dir ))
 		board.highlightCells.assign(ship.positions)
 	else:
