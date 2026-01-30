@@ -6,14 +6,20 @@ const DIM: int = 20
 const CELL_SIZE: int = 40
 
 var cells: Array[Array] = []
+var highlightCells: Array[Vector2i]
 
 func _process(delta: float) -> void:
 	for row in cells:
 		for cell in row:
 			var sprite: Sprite2D = cell
 			sprite.modulate = Color.WHITE
-	var target_cell = world_to_cell(get_global_mouse_position())
-	if target_cell.x >= 0 and target_cell.x < DIM and target_cell.y >= 0 and target_cell.y < DIM:
+	highlight(world_to_cell(get_global_mouse_position()))
+	#for cell in highlightCells:
+		#highlight(cell)
+	
+
+func highlight(target_cell :Vector2i):
+	if isValidPos(target_cell):
 		cells[target_cell.x][target_cell.y].modulate = Color.RED
 
 func _ready() -> void:
@@ -27,12 +33,12 @@ func _ready() -> void:
 			row.push_back(cell)
 		cells.push_back(row)
 
-func get_cell(coord: Vector2i) -> Sprite2D:
-	if coord.x >= 0 and coord.x < DIM and coord.y >= 0 and coord.y < DIM:
-		return cells[coord.x][coord.y]
-	else:
-		return null
+func isValidPos(coord: Vector2i) -> bool:
+	return coord.x >= 0 and coord.x < DIM and coord.y >= 0 and coord.y < DIM
 
 func world_to_cell(pos: Vector2) -> Vector2i:
 	var local_pos = to_local(pos)
 	return local_pos / CELL_SIZE
+
+func cell_to_world(pos: Vector2) -> Vector2:
+	return to_global(pos*CELL_SIZE)
