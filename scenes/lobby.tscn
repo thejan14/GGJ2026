@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://tqykh5rxjluu"]
+
+[ext_resource type="Script" uid="uid://ft1m5jk5mmq" path="res://scripts/lobby.gd" id="1_o1atq"]
+
+[node name="Lobby" type="Control" unique_id=231543460 node_paths=PackedStringArray("host_button", "connect_button", "ip_input", "ip_info")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o1atq")
+host_button = NodePath("VBoxContainer/Content/HostButton")
+connect_button = NodePath("VBoxContainer/Content/ConnectButton")
+ip_input = NodePath("VBoxContainer/Content/IpInput")
+ip_info = NodePath("VBoxContainer/Header/IpLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1466913651]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -355.0
+offset_top = 50.0
+offset_right = 355.0
+offset_bottom = 108.0
+grow_horizontal = 2
+
+[node name="Header" type="HBoxContainer" parent="VBoxContainer" unique_id=462406839]
+layout_mode = 2
+
+[node name="IpLabel" type="Label" parent="VBoxContainer/Header" unique_id=2129070417]
+layout_mode = 2
+text = "Your IP: "
+
+[node name="Content" type="HBoxContainer" parent="VBoxContainer" unique_id=1815978165]
+layout_mode = 2
+
+[node name="IpInput" type="LineEdit" parent="VBoxContainer/Content" unique_id=1100173735]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConnectButton" type="Button" parent="VBoxContainer/Content" unique_id=460478208]
+layout_mode = 2
+text = "Connect"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer/Content" unique_id=1975283741]
+layout_mode = 2
+
+[node name="HostButton" type="Button" parent="VBoxContainer/Content" unique_id=683002236]
+layout_mode = 2
+text = "Host"
