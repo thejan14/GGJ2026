@@ -68,9 +68,14 @@ func positionUpdated():
 	for it in range(0,flames.size()):
 		flames[it].global_position = targetBoard.cell_to_world(Vector2(positions[it])+Vector2.ONE*0.5)
 
-func hit(pos: Vector2i)-> bool :
+func hit(pos: Vector2i, isScan:bool)-> bool :
 	var it = positions.find(pos)
 	if it != -1:
+		if isScan : 
+			return true
+		var i = positionsHit.find(pos) 
+		if i != -1:
+			return true
 		positionsHit.append(positions[it])
 		var sprite = Sprite2D.new()
 		sprite.texture = preload("res://art/Flamme.png")

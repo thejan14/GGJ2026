@@ -188,7 +188,7 @@ func get_action_result(pos: Vector2i, action: ActionMask.ACTION) -> RESULT:
 		return RESULT.NO_RESULT
 	else:
 		for ship in _ships:
-			if ship.hit(pos):
+			if ship.hit(pos,action == ActionMask.ACTION.SCAN):
 				return RESULT.SHIP_HIT if action == ActionMask.ACTION.HIT else RESULT.SHIP
 		if bojen.find(pos) != -1 || islands.find(pos) != -1:
 			return RESULT.OBJECT
