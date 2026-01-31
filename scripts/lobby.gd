@@ -21,6 +21,8 @@ func _on_player_connected(peer_id: int, info: Dictionary) -> void:
 		host_name.text = info["name"]
 	else:
 		client_name.text = info["name"]
+		if multiplayer.is_server():
+			start_button.visible = true
 
 func join_game():
 	MultiplayerManager.join_game(ip_input.text, name_input.text)
@@ -29,4 +31,4 @@ func create_game():
 	MultiplayerManager.create_game(name_input.text)
 
 func start_game() -> void:
-	MultiplayerManager.load_game("res://scenes/game.tscn")
+	MultiplayerManager.load_game.rpc("res://scenes/game.tscn")
