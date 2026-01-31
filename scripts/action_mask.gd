@@ -24,6 +24,8 @@ func setPosition(worldPos : Vector2)-> void:
 func place() -> bool:
 	var pos := target_map.world_to_cell(global_position)
 	pos -= Vector2i(mask.size() / 2, mask.size() / 2)
+	var dim := mask[0].size()
+	target_map.last_hit = Rect2i(pos, Vector2i(dim, dim))
 	var id = MultiplayerManager.client_player_id if multiplayer.is_server() else 1
 	MultiplayerManager.apply_action_mask.rpc_id(id, pos, mask)
 	return true

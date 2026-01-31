@@ -73,9 +73,12 @@ func _ready() -> void:
 	MultiplayerManager.ready_update.connect(_on_ready_update.bind())
 	MultiplayerManager.action_applied.connect(_on_action_applied.bind())
 	MultiplayerManager.action_result.connect(_on_action_result.bind())
+	MultiplayerManager.advance_state.connect(_on_advance_state.bind())
 	ready_button.pressed.connect(player_ready.bind())
 	set_state(GAME_STATE.SETUP)
 	cam.make_current()
+	if not Engine.is_editor_hint():
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
 func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 	print("Action applied at: %s, %s" % [pos, mask])
@@ -86,6 +89,13 @@ func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 func _on_action_result(result: Array[PackedInt32Array]) -> void:
 	print("Result received: %s" % [result])
 	result_info.set_result(result)
+
+func _on_advance_state() -> void:
+	MouseSelection.deselect()
+	if current_state == GAME_STATE.PLAYER_TURN:
+		current_state = GAME_STATE.ENEMY_TURN
+	else:
+		current_state = GAME_STATE.PLAYER_TURN
 
 func _on_ready_update() -> void:
 	var all_ready: bool = true

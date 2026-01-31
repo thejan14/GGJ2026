@@ -7,6 +7,7 @@ signal server_disconnected
 signal ready_update()
 signal action_applied(pos: Vector2i, mask: Array[PackedInt32Array])
 signal action_result(result: Array[PackedInt32Array])
+signal advance_state()
 
 const PORT = 28960
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
@@ -61,22 +62,11 @@ func remove_multiplayer_peer():
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
 	players.clear()
 
-
 # When the server decides to start the game from a UI scene,
 # do Lobby.load_game.rpc(filepath)
 @rpc("call_local", "reliable")
 func load_game(game_scene_path):
 	get_tree().change_scene_to_file(game_scene_path)
-
-
-# Every peer will call this when they have loaded the game scene.
-@rpc("any_peer", "call_local", "reliable")
-func player_loaded():
-	if multiplayer.is_server():
-		players_loaded += 1
-		if players_loaded == players.size():
-			$/root/Game.start_game()
-			players_loaded = 0
 
 @rpc("any_peer", "call_local", "reliable")
 func notify_ready(is_ready: bool) -> void:
@@ -91,6 +81,10 @@ func apply_action_mask(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 @rpc("any_peer", "reliable")
 func notify_action_result(result: Array[PackedInt32Array]) -> void:
 	action_result.emit(result)
+
+@rpc("any_peer", "call_local", "reliable")
+func notify_advance_state(result: Array[PackedInt32Array]) -> void:
+	advance_state.emit()
 
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.
@@ -112,7 +106,6 @@ func _register_player(new_player_info):
 func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
-
 
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
