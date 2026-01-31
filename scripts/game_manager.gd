@@ -66,6 +66,8 @@ func _ready() -> void:
 func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 	print("Action applied at: %s, %s" % [pos, mask])
 	var result := board.apply_action_mask(pos, mask)
+	var id = MultiplayerManager.client_player_id if multiplayer.is_server() else 1
+	MultiplayerManager.notify_action_result.rpc_id(id, result)
 
 func _on_action_result(result: Array[PackedInt32Array]) -> void:
 	print("Result received: %s" % result)
