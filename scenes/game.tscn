@@ -11,12 +11,18 @@
 [ext_resource type="Script" uid="uid://ckjckdloxs5e8" path="res://scripts/ship_button.gd" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://d0oaq8r1tik6s" path="res://scenes/ship.tscn" id="12_dinhu"]
 
-[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "tool_bar", "objects_container")]
+[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "tool_bar", "objects_container", "ready_info", "ready_button", "host_name", "client_name", "host_ready", "client_ready")]
 script = ExtResource("1_yqjtg")
 cam = NodePath("Camera2D")
 board = NodePath("Board")
 tool_bar = NodePath("ToolBar")
 objects_container = NodePath("Objects")
+ready_info = NodePath("ReadyInfo")
+ready_button = NodePath("ReadyInfo/ReadyButton")
+host_name = NodePath("ReadyInfo/HostName")
+client_name = NodePath("ReadyInfo/ClientName")
+host_ready = NodePath("ReadyInfo/HostReady")
+client_ready = NodePath("ReadyInfo/ClientReady")
 
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
 position = Vector2(607, 110)
@@ -63,6 +69,34 @@ script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("12_dinhu")
 targetBoard = NodePath("../../Board")
 
-[node name="ReadyButton" type="Button" parent="." unique_id=2085228774]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="ReadyInfo" type="HBoxContainer" parent="." unique_id=2035009733]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -58.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="HostName" type="Label" parent="ReadyInfo" unique_id=1535045604]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+
+[node name="HostReady" type="CheckBox" parent="ReadyInfo" unique_id=68304503]
+layout_mode = 2
+disabled = true
+
+[node name="ReadyButton" type="Button" parent="ReadyInfo" unique_id=2085228774]
+layout_mode = 2
+text = "Ready"
+
+[node name="ClientReady" type="CheckBox" parent="ReadyInfo" unique_id=134637052]
+layout_mode = 2
+disabled = true
+
+[node name="ClientName" type="Label" parent="ReadyInfo" unique_id=1142751107]
+layout_mode = 2
+size_flags_horizontal = 3

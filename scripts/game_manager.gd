@@ -11,6 +11,12 @@ enum GAME_STATE
 @export var board: Board
 @export var tool_bar: Control
 @export var objects_container: Control
+@export var ready_info: Control
+@export var ready_button: Button
+@export var host_name: Label
+@export var client_name: Label
+@export var host_ready: CheckBox
+@export var client_ready: CheckBox
 
 @export var shipsPlayer1: Array[Ship]
 
@@ -38,13 +44,32 @@ func _input(event: InputEvent) -> void:
 			MouseSelection.deselect()
 
 func _ready() -> void:
+	if MultiplayerManager.players.size() > 0:
+		host_name.text = MultiplayerManager.players[1].name
+		var client_id = MultiplayerManager.players.keys().find_custom(func(id): return id != 1)
+		if client_id != -1:
+			client_name.text = MultiplayerManager.players[client_id].name
+	MultiplayerManager.ready_update.connect(_on_ready_update.bind())
+	ready_button.pressed.connect(player_ready.bind())
 	set_state(GAME_STATE.SETUP)
 	cam.make_current()
+
+func _on_ready_update() -> void:
+	for id in MultiplayerManager.players.keys():
+		var is_ready = MultiplayerManager.players[id].ready
+		if id == 1:
+			host_ready.button_pressed = is_ready
+		else:
+			client_ready.button_pressed = is_ready
+
+func player_ready() -> void:
+	MultiplayerManager.notify_ready.rpc(true)
 
 func set_state(state: GAME_STATE) -> void:
 	current_state = state
 	tool_bar.visible = current_state == GAME_STATE.PLAYER_TURN
 	objects_container.visible = current_state == GAME_STATE.SETUP
+	ready_button.visible = current_state == GAME_STATE.SETUP
 
 func isfree(pos : Vector2i) -> bool :
 	return !shipsPlayer1.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))

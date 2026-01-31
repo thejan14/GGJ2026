@@ -4,6 +4,7 @@ extends Node
 signal player_connected(peer_id: int, info: Dictionary)
 signal player_disconnected(peer_id)
 signal server_disconnected
+signal ready_update()
 
 const PORT = 28960
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
@@ -17,11 +18,9 @@ var players = {}
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
 # entered in a UI scene.
-var player_info = {"name": "Name"}
+var player_info = {"name": "Name", "ready": false}
 
 var players_loaded = 0
-
-
 
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -75,6 +74,11 @@ func player_loaded():
 			$/root/Game.start_game()
 			players_loaded = 0
 
+@rpc("any_peer", "call_local", "reliable")
+func notify_ready(is_ready: bool) -> void:
+	print("%s ready: %s" % [multiplayer.get_remote_sender_id(), is_ready])
+	players[multiplayer.get_remote_sender_id()].ready = is_ready
+	ready_update.emit()
 
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.
@@ -88,10 +92,6 @@ func _register_player(new_player_info):
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
 	print("Successfully registerd player: %s" % new_player_id)
-
-@rpc("any_peer", "reliable")
-func _inform_ready() -> void:
-	multiplayer.is_server()
 
 func _on_player_disconnected(id):
 	players.erase(id)
