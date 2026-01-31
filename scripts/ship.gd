@@ -34,13 +34,19 @@ func set_state(state: STATE) -> void:
 
 func setPosition(worldPos : Vector2) -> void:
 	var cell = targetBoard.world_to_cell(worldPos)
+	var cellCenter = Vector2(cell)+Vector2.ONE*0.5 * Vector2(dir) if DIM % 2 == 0 else Vector2(cell)+Vector2.ONE*0.5
+	print(cellCenter)
 	global_position = targetBoard.cell_to_world(Vector2(cell)+Vector2.ONE*0.5) if targetBoard.isValidPos(cell) else worldPos
 
 func place() -> bool:
 	var refPos = targetBoard.world_to_cell(global_position)
 	positions = [refPos + dir,refPos,refPos - dir]
 	for i in range(3,DIM):
-		positions.append(refPos - (i-2)*dir)
+		if i%2==0:
+			positions.push_front(refPos + (i)*dir)
+		else:
+			positions.append(refPos - (i)*dir)
+		
 	return positions.all(func(p):return targetBoard.isValidPos(p))
 
 func rotateShip(direction:ROTATION_DIR) ->void :
