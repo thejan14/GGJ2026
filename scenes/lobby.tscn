@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ft1m5jk5mmq" path="res://scripts/lobby.gd" id="1_o1atq"]
 
-[node name="Lobby" type="Control" unique_id=231543460 node_paths=PackedStringArray("host_button", "connect_button", "ip_input", "ip_info")]
+[node name="Lobby" type="Control" unique_id=231543460 node_paths=PackedStringArray("host_button", "connect_button", "ip_input", "ip_info", "name_input", "host_name", "client_name")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +13,10 @@ script = ExtResource("1_o1atq")
 host_button = NodePath("VBoxContainer/Content/HostButton")
 connect_button = NodePath("VBoxContainer/Content/ConnectButton")
 ip_input = NodePath("VBoxContainer/Content/IpInput")
-ip_info = NodePath("VBoxContainer/Header/IpLabel")
+ip_info = NodePath("VBoxContainer/Header/IpInfo")
+name_input = NodePath("VBoxContainer/Header/NameInput")
+host_name = NodePath("Players/HBoxContainer2/HostName")
+client_name = NodePath("Players/HBoxContainer2/ClientName")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1466913651]
 layout_mode = 1
@@ -29,9 +32,24 @@ grow_horizontal = 2
 [node name="Header" type="HBoxContainer" parent="VBoxContainer" unique_id=462406839]
 layout_mode = 2
 
+[node name="NameLabel" type="Label" parent="VBoxContainer/Header" unique_id=67567170]
+layout_mode = 2
+text = "Name:"
+
+[node name="NameInput" type="LineEdit" parent="VBoxContainer/Header" unique_id=1794248556]
+custom_minimum_size = Vector2(144, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Blackbeard"
+
 [node name="IpLabel" type="Label" parent="VBoxContainer/Header" unique_id=2129070417]
 layout_mode = 2
 text = "Your IP: "
+
+[node name="IpInfo" type="LineEdit" parent="VBoxContainer/Header" unique_id=940215561]
+custom_minimum_size = Vector2(132, 0)
+layout_mode = 2
+text = "255.255.255.255"
 
 [node name="Content" type="HBoxContainer" parent="VBoxContainer" unique_id=1815978165]
 layout_mode = 2
@@ -39,6 +57,7 @@ layout_mode = 2
 [node name="IpInput" type="LineEdit" parent="VBoxContainer/Content" unique_id=1100173735]
 layout_mode = 2
 size_flags_horizontal = 3
+placeholder_text = "127.0.0.1"
 
 [node name="ConnectButton" type="Button" parent="VBoxContainer/Content" unique_id=460478208]
 layout_mode = 2
@@ -50,3 +69,51 @@ layout_mode = 2
 [node name="HostButton" type="Button" parent="VBoxContainer/Content" unique_id=683002236]
 layout_mode = 2
 text = "Host"
+
+[node name="Players" type="VBoxContainer" parent="." unique_id=1539208799]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.5
+offset_top = -29.5
+offset_right = 213.5
+offset_bottom = 29.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Players" unique_id=1558282609]
+layout_mode = 2
+
+[node name="HostLabel" type="Label" parent="Players/HBoxContainer" unique_id=1378457269]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host"
+
+[node name="vs" type="VSeparator" parent="Players/HBoxContainer" unique_id=2029312476]
+layout_mode = 2
+
+[node name="ClientName" type="Label" parent="Players/HBoxContainer" unique_id=1526716499]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Client"
+horizontal_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Players" unique_id=397701972]
+layout_mode = 2
+
+[node name="HostName" type="Label" parent="Players/HBoxContainer2" unique_id=1075272625]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="vs" type="Label" parent="Players/HBoxContainer2" unique_id=2043951050]
+layout_mode = 2
+text = "VS"
+horizontal_alignment = 1
+
+[node name="ClientName" type="Label" parent="Players/HBoxContainer2" unique_id=550163600]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2

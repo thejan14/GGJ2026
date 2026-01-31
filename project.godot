@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MouseSelection="*res://scripts/mouse_selection.gd"
+MultiplayerManager="*uid://cy2g2ft6xhjqh"
 
 [display]
 
