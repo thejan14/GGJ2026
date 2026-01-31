@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://ciioqr8q1ogev"]
+
+[ext_resource type="Script" uid="uid://byqh4w5ryvvhd" path="res://scripts/ship.gd" id="1_kak6x"]
+[ext_resource type="Texture2D" uid="uid://ieawwkkkkayx" path="res://art/Ship_5.png" id="2_kak6x"]
+
+[node name="Ship5" type="Node2D" unique_id=902964067 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_kak6x")
+DIM = 5
+sprite = NodePath("Ship5")
+
+[node name="Ship5" type="Sprite2D" parent="." unique_id=1270324017]
+z_index = 10
+position = Vector2(0, 40)
+texture = ExtResource("2_kak6x")

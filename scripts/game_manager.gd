@@ -27,10 +27,10 @@ func _input(event: InputEvent) -> void:
 		moveShips(shipsPlayer1)
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
-			ship.place()
-			shipsPlayer1.append(ship)
-			ship.reparent(board)
-			MouseSelection.current_selection = null
+			if ship.place():
+				shipsPlayer1.append(ship)
+				ship.reparent(board)
+				MouseSelection.current_selection = null
 	if event.is_action_pressed("RotateDown"):
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
@@ -82,8 +82,7 @@ func move(ship : Ship)-> void:
 	else:
 		ship.positions.reverse()
 		ship.flip()
-	var center = ship.positions.reduce(func(a,b):return a+b) /ship.positions.size() 
-	ship.global_position = board.cell_to_world(Vector2(center)+Vector2.ONE*0.5)
+	ship.positionUpdated()
 
 func moveShips(ships : Array[Ship]) -> void:
 	for ship in ships:
