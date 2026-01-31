@@ -97,7 +97,7 @@ func notify_action_result(result: Array[PackedInt32Array]) -> void:
 	action_result.emit(result)
 
 @rpc("any_peer", "call_local", "reliable")
-func notify_advance_state(result: Array[PackedInt32Array]) -> void:
+func notify_advance_state() -> void:
 	advance_state.emit()
 
 @rpc("any_peer", "reliable")
