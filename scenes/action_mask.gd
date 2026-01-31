@@ -1,4 +1,4 @@
-class_name ActionMaks
+class_name ActionMask
 
 extends CursorNode
 
@@ -9,6 +9,7 @@ enum ACTION
 	HIT = 2
 }
 
+@export var target_map: Map
 @export var mask: Array[PackedInt32Array] = [
 	[0, 0, 0],
 	[0, 0, 0],
@@ -19,4 +20,5 @@ func setPosition(worldPos : Vector2)-> void:
 	global_position = worldPos
 
 func place() -> bool:
-	return false
+	#MultiplayerManager.apply_action_mask()
+	return true

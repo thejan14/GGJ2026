@@ -51,6 +51,7 @@ position = Vector2(607, 110)
 position = Vector2(960, 540)
 
 [node name="ToolBar" type="VBoxContainer" parent="." unique_id=372132904]
+visible = false
 offset_left = 74.0
 offset_top = 70.0
 offset_right = 114.0

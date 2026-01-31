@@ -5,6 +5,8 @@ signal player_connected(peer_id: int, info: Dictionary)
 signal player_disconnected(peer_id)
 signal server_disconnected
 signal ready_update()
+signal action_applied(pos: Vector2i, mask: Array[PackedInt32Array])
+signal action_result(result: Array[PackedInt32Array])
 
 const PORT = 28960
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
@@ -81,6 +83,14 @@ func notify_ready(is_ready: bool) -> void:
 	print("%s ready: %s" % [multiplayer.get_remote_sender_id(), is_ready])
 	players[multiplayer.get_remote_sender_id()].ready = is_ready
 	ready_update.emit()
+
+@rpc("any_peer", "reliable")
+func apply_action_mask(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
+	action_applied.emit(pos, mask)
+
+@rpc("any_peer", "reliable")
+func notify_action_result(result: Array[PackedInt32Array]) -> void:
+	action_result.emit(result)
 
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.

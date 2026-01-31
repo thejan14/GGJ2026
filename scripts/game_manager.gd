@@ -34,6 +34,9 @@ func _input(event: InputEvent) -> void:
 				shipsPlayer1.append(ship)
 				ship.reparent(board)
 				MouseSelection.current_selection = null
+		if MouseSelection.current_selection is ActionMask:
+			var action_mask: ActionMask = MouseSelection.current_selection
+			action_mask.place()
 	if event.is_action_pressed("RotateDown"):
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
@@ -54,9 +57,18 @@ func _ready() -> void:
 		MultiplayerManager.create_game("Test")
 		client_ready.button_pressed = true
 	MultiplayerManager.ready_update.connect(_on_ready_update.bind())
+	MultiplayerManager.action_applied.connect(_on_action_applied.bind())
+	MultiplayerManager.action_result.connect(_on_action_result.bind())
 	ready_button.pressed.connect(player_ready.bind())
 	set_state(GAME_STATE.SETUP)
 	cam.make_current()
+
+func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
+	print("Action applied at: %s, %s" % [pos, mask])
+	var result := board.apply_action_mask(pos, mask)
+
+func _on_action_result(result: Array[PackedInt32Array]) -> void:
+	print("Result received: %s" % result)
 
 func _on_ready_update() -> void:
 	var all_ready: bool = true
@@ -73,13 +85,17 @@ func _on_ready_update() -> void:
 func transition_to_turn_state() -> void:
 	map.process_mode = Node.PROCESS_MODE_INHERIT
 	map.visible = true
+	ready_info.visible = false
+	objects_container.visible = false
 	var tween = create_tween()
 	tween.parallel().tween_property(board, "transform", board_target.transform, 1.0) \
 		.set_trans(Tween.TRANS_SINE) \
 		.set_ease(Tween.EASE_IN_OUT)
 	tween.parallel().tween_property(map, "transform", map_target.transform, 1.0) \
 		.set_trans(Tween.TRANS_SINE) \
-		.set_ease(Tween.EASE_IN_OUT)
+		.set_ease(Tween.EASE_OUT)
+	await tween.finished
+	tool_bar.visible = true
 	set_state(GAME_STATE.PLAYER_TURN if multiplayer.is_server() else GAME_STATE.ENEMY_TURN)
 
 func player_ready() -> void:
@@ -87,9 +103,6 @@ func player_ready() -> void:
 
 func set_state(state: GAME_STATE) -> void:
 	current_state = state
-	tool_bar.visible = current_state == GAME_STATE.PLAYER_TURN
-	objects_container.visible = current_state == GAME_STATE.SETUP
-	ready_button.visible = current_state == GAME_STATE.SETUP
 
 func isfree(pos : Vector2i) -> bool :
 	return !shipsPlayer1.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))
