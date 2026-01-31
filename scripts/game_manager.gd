@@ -70,7 +70,7 @@ func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 	MultiplayerManager.notify_action_result.rpc_id(id, result)
 
 func _on_action_result(result: Array[PackedInt32Array]) -> void:
-	print("Result received: %s" % result)
+	print("Result received: %s" % [result])
 
 func _on_ready_update() -> void:
 	var all_ready: bool = true

@@ -119,10 +119,8 @@ func _on_connected_ok():
 	players[peer_id] = player_info
 	player_connected.emit(peer_id, player_info)
 
-
 func _on_connected_fail():
 	remove_multiplayer_peer()
-
 
 func _on_server_disconnected():
 	remove_multiplayer_peer()
