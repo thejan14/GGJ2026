@@ -11,10 +11,12 @@
 [ext_resource type="Script" uid="uid://ckjckdloxs5e8" path="res://scripts/ship_button.gd" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://d0oaq8r1tik6s" path="res://scenes/ship.tscn" id="12_dinhu"]
 
-[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board")]
+[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "tool_bar", "objects_container")]
 script = ExtResource("1_yqjtg")
 cam = NodePath("Camera2D")
 board = NodePath("Board")
+tool_bar = NodePath("ToolBar")
+objects_container = NodePath("Objects")
 
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
 position = Vector2(607, 110)
@@ -22,19 +24,19 @@ position = Vector2(607, 110)
 [node name="Camera2D" type="Camera2D" parent="." unique_id=574924299]
 position = Vector2(960, 540)
 
-[node name="Selection" type="VBoxContainer" parent="." unique_id=372132904]
+[node name="ToolBar" type="VBoxContainer" parent="." unique_id=372132904]
 offset_left = 74.0
 offset_top = 70.0
 offset_right = 114.0
 offset_bottom = 154.0
 
-[node name="ShipMarkerButton" type="TextureButton" parent="Selection" unique_id=713387751]
+[node name="ShipMarkerButton" type="TextureButton" parent="ToolBar" unique_id=713387751]
 layout_mode = 2
 texture_normal = ExtResource("3_u5sy4")
 script = ExtResource("4_lbhrr")
 marker_scene = ExtResource("5_p57ef")
 
-[node name="LandMarkerButton" type="TextureButton" parent="Selection" unique_id=463897540]
+[node name="LandMarkerButton" type="TextureButton" parent="ToolBar" unique_id=463897540]
 layout_mode = 2
 texture_normal = ExtResource("6_gee14")
 script = ExtResource("4_lbhrr")
@@ -60,3 +62,7 @@ texture_normal = ExtResource("10_vtaks")
 script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("12_dinhu")
 targetBoard = NodePath("../../Board")
+
+[node name="Button" type="Button" parent="." unique_id=2085228774]
+offset_right = 8.0
+offset_bottom = 8.0
