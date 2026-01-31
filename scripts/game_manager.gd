@@ -145,15 +145,19 @@ func set_state(state: GAME_STATE) -> void:
 func isShipOnCell(pos : Vector2i) -> bool :
 	if _ships.is_empty():
 		return false
-	return _ships.find_custom(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))!=1
+	for ship in _ships: 
+		for positions in ship.positions:
+			if  positions == pos:
+				return true
+	return false
 
 func isIslandOnCell(pos : Vector2i) -> bool :
-	if _ships.is_empty():
+	if islands.is_empty():
 		return false
-	return !islands.any(func(p:Vector2i):return p == pos)
+	return islands.any(func(p:Vector2i):return p == pos)
 
 func isfree(pos : Vector2i) -> bool :
-	return !isShipOnCell(pos) && isIslandOnCell(pos)
+	return !isShipOnCell(pos) && !isIslandOnCell(pos)
 
 func move(ship : Ship)-> void:
 	var nextPos = ship.positions[0] + ship.dir
