@@ -12,15 +12,7 @@ enum ROTATION_DIR{LEFT,RIGHT}
 @export var sprite : Sprite2D 
 
 @export var targetBoard : Board
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+var positionsHit: Array[Vector2i]
 
 func flip() ->void:
 	dir *= -1
@@ -35,7 +27,7 @@ func set_state(state: STATE) -> void:
 func setPosition(worldPos : Vector2) -> void:
 	var cell = targetBoard.world_to_cell(worldPos)
 	var cellCenter = Vector2(cell)+Vector2.ONE*0.5 * rotate90(dir,ROTATION_DIR.LEFT) if DIM % 2 == 0 else Vector2(cell)+Vector2.ONE*0.5
-	print(cellCenter)
+	#print(cellCenter)
 	global_position = targetBoard.cell_to_world(cellCenter) if targetBoard.isValidPos(cell) else worldPos
 
 func place() -> bool:
@@ -71,3 +63,10 @@ func rotateShip(direction:ROTATION_DIR) ->void :
 func positionUpdated():
 	var center = positions.reduce(func(a,b):return a+b) /positions.size() 
 	global_position = targetBoard.cell_to_world(Vector2(center)+Vector2.ONE*0.5)
+
+func hit(pos: Vector2i)-> bool :
+	var it = positions.find(pos)
+	if it != -1:
+		positionsHit.append(positions[it])
+		return true
+	return false

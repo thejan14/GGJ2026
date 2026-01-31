@@ -7,6 +7,16 @@ enum GAME_STATE
 	PLAYER_TURN,
 }
 
+enum RESULT
+{
+	NO_RESULT = 0,
+	WATER = 1,
+	OBJECT = 2,
+	SHIP = 3,
+	SHIP_HIT = 4
+}
+
+
 @export var cam: Camera2D
 @export var board: Board
 @export var map: Map
@@ -21,17 +31,19 @@ enum GAME_STATE
 @export var board_target: Marker2D
 @export var map_target: Marker2D
 
-@export var shipsPlayer1: Array[Ship]
+@export var _ships: Array[Ship]
+@export var bojen: Array[Ship]
+@export var ilands: Array[Ship]
 
 var current_state: GAME_STATE
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select"):
-		moveShips(shipsPlayer1)
+		moveShips(_ships)
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
 			if ship.place() && ship.positions.all(func(p): return isfree(p)):
-				shipsPlayer1.append(ship)
+				_ships.append(ship)
 				ship.reparent(board)
 				MouseSelection.current_selection = null
 		if MouseSelection.current_selection is ActionMask:
@@ -65,7 +77,7 @@ func _ready() -> void:
 
 func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 	print("Action applied at: %s, %s" % [pos, mask])
-	var result := board.apply_action_mask(pos, mask)
+	var result := apply_action_mask(pos, mask)
 	var id = MultiplayerManager.client_player_id if multiplayer.is_server() else 1
 	MultiplayerManager.notify_action_result.rpc_id(id, result)
 
@@ -107,7 +119,7 @@ func set_state(state: GAME_STATE) -> void:
 	current_state = state
 
 func isfree(pos : Vector2i) -> bool :
-	return !shipsPlayer1.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))
+	return !_ships.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))
 
 func move(ship : Ship)-> void:
 	var nextPos = ship.positions[0] + ship.dir
@@ -122,3 +134,24 @@ func move(ship : Ship)-> void:
 func moveShips(ships : Array[Ship]) -> void:
 	for ship in ships:
 		move(ship)
+
+func apply_action_mask(pos: Vector2i, mask: Array[PackedInt32Array]) -> Array[PackedInt32Array]:
+	var result: Array[PackedInt32Array] = []
+	for j in range(0, mask.size()):
+		result.push_back([])
+		for i in range(0, mask[j].size()):
+			var board_pos := pos + Vector2i(i, j)
+			result[j].push_back(get_action_result(board_pos, mask[j][i]))
+	return result
+
+func get_action_result(pos: Vector2i, action: ActionMask.ACTION) -> RESULT:
+	if action == ActionMask.ACTION.EMPTY:
+		return RESULT.NO_RESULT
+	else:
+		var shipID = _ships.find_custom(func(ship:Ship) : ship.positions.any(func(p):p==pos))
+		if shipID != -1:
+			_ships[shipID].hit(pos)
+			return RESULT.SHIP_HIT if action == ActionMask.ACTION.HIT else RESULT.SHIP
+		elif bojen.find(pos) != -1 || ilands.find(pos) != -1:
+			return RESULT.OBJECT
+	return RESULT.WATER
