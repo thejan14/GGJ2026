@@ -1,9 +1,7 @@
 class_name Map
 
-extends Node2D
+extends Grid
 
-const DIM: int = 20
-const CELL_SIZE: int = 40
 const NO_CELL: Vector2i = Vector2i(-1, -1)
 
 var hover_cell: Vector2i = NO_CELL
