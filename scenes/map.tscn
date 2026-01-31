@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://bmw6hxcb71v0c"]
 
 [ext_resource type="Script" uid="uid://uw563shloq3m" path="res://scripts/map.gd" id="1_4xfga"]
+[ext_resource type="Texture2D" uid="uid://bre8kqge0idpf" path="res://art/Notizblock_.png" id="2_paxxb"]
 
 [node name="Map" type="Node2D" unique_id=1685111805]
 script = ExtResource("1_4xfga")
+
+[node name="Notizblock" type="Sprite2D" parent="." unique_id=1866580473]
+z_index = -1
+z_as_relative = false
+position = Vector2(392, 385)
+texture = ExtResource("2_paxxb")

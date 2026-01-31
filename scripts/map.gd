@@ -30,13 +30,3 @@ func _process(delta: float) -> void:
 	else:
 		hover_cell = NO_CELL
 	queue_redraw()
-
-func _draw() -> void:
-	var start := 0
-	var end := CELL_SIZE * DIM
-	for i in range(0, DIM + 1):
-		var row := i * CELL_SIZE
-		draw_line(Vector2(row, start), Vector2(row, end), Color.BLACK)
-	for j in range(0, DIM + 1):
-		var column := j * CELL_SIZE
-		draw_line(Vector2(start, column), Vector2(end, column), Color.BLACK)
