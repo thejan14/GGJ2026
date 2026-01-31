@@ -11,6 +11,7 @@ func select(obj: Node2D) -> void:
 func deselect() -> void:
 	if current_selection:
 		current_selection.queue_free()
+		current_selection = null
 
 func _process(delta: float) -> void:
 	if current_selection != null:
