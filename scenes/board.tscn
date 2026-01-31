@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://bg5ptytfsutot"]
 
 [ext_resource type="Script" uid="uid://tcjqaflg4jwx" path="res://scripts/board.gd" id="1_tx6nw"]
+[ext_resource type="Texture2D" uid="uid://j17mm26lweut" path="res://art/Karte_mittig.png" id="2_tx6nw"]
 
 [node name="Board" type="Node2D" unique_id=1640674209]
 script = ExtResource("1_tx6nw")
+
+[node name="KarteMittig" type="Sprite2D" parent="." unique_id=512369160]
+texture = ExtResource("2_tx6nw")
+offset = Vector2(400.685, 376.915)

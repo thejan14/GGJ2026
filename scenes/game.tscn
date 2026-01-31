@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bg5ptytfsutot" path="res://scenes/board.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://d1beq52whxn1v" path="res://scripts/game_manager.gd" id="1_yqjtg"]
 [ext_resource type="Texture2D" uid="uid://bpyv3fg0f1bca" path="res://art/x.png" id="3_u5sy4"]
-[ext_resource type="Script" path="res://scripts/marker_button.gd" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://basevvjj3j3jf" path="res://scripts/marker_button.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c8ct6mnuuadla" path="res://scenes/marker_ship.tscn" id="5_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://ci5moltxb2smp" path="res://scenes/marker_land.tscn" id="7_gee14"]
@@ -17,15 +17,16 @@ cam = NodePath("Camera2D")
 board = NodePath("Board")
 
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
+position = Vector2(607, 110)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=574924299]
 position = Vector2(960, 540)
 
 [node name="Selection" type="VBoxContainer" parent="." unique_id=372132904]
-offset_left = 45.0
-offset_top = 88.0
-offset_right = 85.0
-offset_bottom = 172.0
+offset_left = 74.0
+offset_top = 70.0
+offset_right = 114.0
+offset_bottom = 154.0
 
 [node name="ShipMarkerButton" type="TextureButton" parent="Selection" unique_id=713387751]
 layout_mode = 2
@@ -44,14 +45,17 @@ layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -576.0
+offset_left = -475.0
+offset_top = 52.0
 offset_bottom = 407.0
 grow_horizontal = 0
 
 [node name="ShipButton" type="TextureButton" parent="Objects" unique_id=673901906 node_paths=PackedStringArray("targetBoard")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 78.0
+offset_top = 28.0
+offset_right = 138.0
+offset_bottom = 151.0
 texture_normal = ExtResource("10_vtaks")
 script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("12_dinhu")
