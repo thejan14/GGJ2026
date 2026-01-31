@@ -1,8 +1,9 @@
 class_name ResultInfo
 
-extends GridContainer
+extends Control
 
 @export var result_sprites: Array[Texture2D]
+@export var info_grid: GridContainer
 
 func set_result(result: Array[PackedInt32Array]) -> void:
 	for child in get_children():

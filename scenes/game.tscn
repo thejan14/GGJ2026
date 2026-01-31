@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bg5ptytfsutot" path="res://scenes/board.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://d1beq52whxn1v" path="res://scripts/game_manager.gd" id="1_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://cgve4poah6ffo" path="res://art/Hintergrund.png" id="2_nepv3"]
 [ext_resource type="PackedScene" uid="uid://bmw6hxcb71v0c" path="res://scenes/map.tscn" id="3_ir15t"]
 [ext_resource type="Script" uid="uid://basevvjj3j3jf" path="res://scripts/marker_button.gd" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://b8ksxbxjgafp7" path="res://art/Stempel_Schiff_Legende.png" id="4_suyxu"]
@@ -37,6 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://5ab7fmhr4uo1" path="res://art/Maske_Wasser.png" id="34_02fa5"]
 [ext_resource type="Texture2D" uid="uid://bf5aekdwyiulu" path="res://art/Maske_Schiff_erkannt.png" id="36_nepv3"]
 [ext_resource type="Texture2D" uid="uid://dvpjx8lb3kubn" path="res://art/Maske_Treffer.png" id="37_7025r"]
+[ext_resource type="Texture2D" uid="uid://d0dksl0vaxqvn" path="res://art/cell.png" id="39_7025r"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
 
@@ -57,7 +59,14 @@ client_ready = NodePath("ReadyInfo/ClientReady")
 board_target = NodePath("BoardTarget")
 map_target = NodePath("MapTarget")
 
+[node name="Background" type="Sprite2D" parent="." unique_id=1706648098]
+z_index = -100
+z_as_relative = false
+position = Vector2(960, 540)
+texture = ExtResource("2_nepv3")
+
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
+z_index = -10
 position = Vector2(556, 110)
 
 [node name="Map" parent="." unique_id=1685111805 instance=ExtResource("3_ir15t")]
@@ -305,12 +314,148 @@ size_flags_horizontal = 3
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="ResultInfo" type="GridContainer" parent="." unique_id=1154093210]
+[node name="ResultInfo" type="MarginContainer" parent="." unique_id=1339260014 node_paths=PackedStringArray("info_grid")]
 visible = false
-offset_left = 1653.0
+offset_left = 1565.0
 offset_top = 65.0
-offset_right = 1693.0
-offset_bottom = 105.0
-columns = 3
+offset_right = 1815.0
+offset_bottom = 351.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 script = ExtResource("33_js0lu")
 result_sprites = Array[Texture2D]([null, ExtResource("34_02fa5"), ExtResource("25_pl11u"), ExtResource("36_nepv3"), ExtResource("37_7025r")])
+info_grid = NodePath("HBoxContainer/InfoGrid")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResultInfo" unique_id=468773867]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="InfoGrid" type="GridContainer" parent="ResultInfo/HBoxContainer" unique_id=1154093210]
+layout_mode = 2
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=706037240]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect2" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=1953206390]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect3" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=2050111212]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect4" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=2052297846]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect5" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=1229391655]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect6" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=1384555082]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect7" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=309407321]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect8" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=1827866569]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="TextureRect9" type="TextureRect" parent="ResultInfo/HBoxContainer/InfoGrid" unique_id=1054817759]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("39_7025r")
+
+[node name="VSeparator" type="VSeparator" parent="ResultInfo/HBoxContainer" unique_id=1069421979]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ResultInfo/HBoxContainer" unique_id=643189497]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ResultInfo/HBoxContainer/VBoxContainer" unique_id=1769993006]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=402519441]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("34_02fa5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=435678297]
+layout_mode = 2
+text = "Water detected"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ResultInfo/HBoxContainer/VBoxContainer" unique_id=1750768717]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=532145101]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("25_pl11u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer2" unique_id=94006895]
+layout_mode = 2
+text = "Object detected"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="ResultInfo/HBoxContainer/VBoxContainer" unique_id=1338694748]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=659910492]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("36_nepv3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer3" unique_id=1972234978]
+layout_mode = 2
+text = "Ship detected"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="ResultInfo/HBoxContainer/VBoxContainer" unique_id=1498566670]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer4" unique_id=1810466943]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("37_7025r")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ResultInfo/HBoxContainer/VBoxContainer/HBoxContainer4" unique_id=639714015]
+layout_mode = 2
+text = "Ship hit"
