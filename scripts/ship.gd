@@ -33,6 +33,7 @@ func setPosition(worldPos : Vector2) -> void:
 
 func place() -> bool:
 	var refPos = targetBoard.world_to_cell(global_position)
+	set_state(CursorNode.STATE.PLACED)
 	positions = [refPos]
 	for i in range(1,DIM+1):
 		if i%2==0:
