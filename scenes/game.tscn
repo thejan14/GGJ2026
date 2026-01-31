@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bg5ptytfsutot" path="res://scenes/board.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://d1beq52whxn1v" path="res://scripts/game_manager.gd" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bmw6hxcb71v0c" path="res://scenes/map.tscn" id="3_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bpyv3fg0f1bca" path="res://art/x.png" id="3_u5sy4"]
-[ext_resource type="Script" path="res://scripts/marker_button.gd" id="4_lbhrr"]
+[ext_resource type="Script" uid="uid://basevvjj3j3jf" path="res://scripts/marker_button.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c8ct6mnuuadla" path="res://scenes/marker_ship.tscn" id="5_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://ci5moltxb2smp" path="res://scenes/marker_land.tscn" id="7_gee14"]
@@ -15,10 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://ieawwkkkkayx" path="res://art/Ship_5.png" id="13_ca42v"]
 [ext_resource type="PackedScene" uid="uid://ciioqr8q1ogev" path="res://scenes/ship_5.tscn" id="14_rysoc"]
 
-[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "tool_bar", "objects_container", "ready_info", "ready_button", "host_name", "client_name", "host_ready", "client_ready")]
+[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "map", "tool_bar", "objects_container", "ready_info", "ready_button", "host_name", "client_name", "host_ready", "client_ready", "board_target", "map_target")]
 script = ExtResource("1_yqjtg")
 cam = NodePath("Camera2D")
 board = NodePath("Board")
+map = NodePath("Map")
 tool_bar = NodePath("ToolBar")
 objects_container = NodePath("Objects")
 ready_info = NodePath("ReadyInfo")
@@ -27,8 +29,22 @@ host_name = NodePath("ReadyInfo/HostName")
 client_name = NodePath("ReadyInfo/ClientName")
 host_ready = NodePath("ReadyInfo/HostReady")
 client_ready = NodePath("ReadyInfo/ClientReady")
+board_target = NodePath("BoardTarget")
+map_target = NodePath("MapTarget")
 
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
+position = Vector2(607, 110)
+
+[node name="Map" parent="." unique_id=1685111805 instance=ExtResource("3_ir15t")]
+process_mode = 4
+visible = false
+position = Vector2(607, -1144)
+
+[node name="BoardTarget" type="Marker2D" parent="." unique_id=1898866271]
+position = Vector2(1434, 626)
+scale = Vector2(0.5, 0.5)
+
+[node name="MapTarget" type="Marker2D" parent="." unique_id=2036846452]
 position = Vector2(607, 110)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=574924299]
@@ -73,6 +89,28 @@ script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("12_dinhu")
 targetBoard = NodePath("../../Board")
 
+[node name="ShipButton2" type="TextureButton" parent="Objects" unique_id=575102535 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 0
+offset_left = 187.0
+offset_top = 30.0
+offset_right = 247.0
+offset_bottom = 190.0
+texture_normal = ExtResource("11_trtic")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("12_trtic")
+targetBoard = NodePath("../../Board")
+
+[node name="ShipButton3" type="TextureButton" parent="Objects" unique_id=434420951 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 36.0
+offset_right = 350.0
+offset_bottom = 236.0
+texture_normal = ExtResource("13_ca42v")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("14_rysoc")
+targetBoard = NodePath("../../Board")
+
 [node name="ReadyInfo" type="HBoxContainer" parent="." unique_id=2035009733]
 anchors_preset = 12
 anchor_top = 1.0
@@ -105,28 +143,6 @@ disabled = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ShipButton2" type="TextureButton" parent="Objects" unique_id=575102535 node_paths=PackedStringArray("targetBoard")]
-layout_mode = 0
-offset_left = 187.0
-offset_top = 30.0
-offset_right = 247.0
-offset_bottom = 190.0
-texture_normal = ExtResource("11_trtic")
-script = ExtResource("11_kvpfn")
-ship_scene = ExtResource("12_trtic")
-targetBoard = NodePath("../../Board")
-
-[node name="ShipButton3" type="TextureButton" parent="Objects" unique_id=434420951 node_paths=PackedStringArray("targetBoard")]
-layout_mode = 0
-offset_left = 290.0
-offset_top = 36.0
-offset_right = 350.0
-offset_bottom = 236.0
-texture_normal = ExtResource("13_ca42v")
-script = ExtResource("11_kvpfn")
-ship_scene = ExtResource("14_rysoc")
-targetBoard = NodePath("../../Board")
-
-[node name="ReadyButton" type="Button" parent="." unique_id=2085228774]
+[node name="ReadyButton" type="Button" parent="." unique_id=398374337]
 offset_right = 8.0
 offset_bottom = 8.0

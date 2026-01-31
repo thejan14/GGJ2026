@@ -9,6 +9,7 @@ enum GAME_STATE
 
 @export var cam: Camera2D
 @export var board: Board
+@export var map: Map
 @export var tool_bar: Control
 @export var objects_container: Control
 @export var ready_info: Control
@@ -17,6 +18,8 @@ enum GAME_STATE
 @export var client_name: Label
 @export var host_ready: CheckBox
 @export var client_ready: CheckBox
+@export var board_target: Marker2D
+@export var map_target: Marker2D
 
 @export var shipsPlayer1: Array[Ship]
 
@@ -47,18 +50,37 @@ func _ready() -> void:
 	if MultiplayerManager.players.size() > 0:
 		host_name.text = MultiplayerManager.players[1].name
 		client_name.text = MultiplayerManager.players[MultiplayerManager.client_player_id].name
+	else:
+		MultiplayerManager.create_game("Test")
+		client_ready.button_pressed = true
 	MultiplayerManager.ready_update.connect(_on_ready_update.bind())
 	ready_button.pressed.connect(player_ready.bind())
 	set_state(GAME_STATE.SETUP)
 	cam.make_current()
 
 func _on_ready_update() -> void:
+	var all_ready: bool = true
 	for id in MultiplayerManager.players.keys():
 		var is_ready = MultiplayerManager.players[id].ready
+		all_ready = all_ready and is_ready
 		if id == 1:
 			host_ready.button_pressed = is_ready
 		else:
 			client_ready.button_pressed = is_ready
+	if all_ready:
+		transition_to_turn_state()
+
+func transition_to_turn_state() -> void:
+	map.process_mode = Node.PROCESS_MODE_INHERIT
+	map.visible = true
+	var tween = create_tween()
+	tween.parallel().tween_property(board, "transform", board_target.transform, 1.0) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT)
+	tween.parallel().tween_property(map, "transform", map_target.transform, 1.0) \
+		.set_trans(Tween.TRANS_SINE) \
+		.set_ease(Tween.EASE_IN_OUT)
+	set_state(GAME_STATE.PLAYER_TURN if multiplayer.is_server() else GAME_STATE.ENEMY_TURN)
 
 func player_ready() -> void:
 	MultiplayerManager.notify_ready.rpc(true)
