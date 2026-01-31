@@ -96,8 +96,8 @@ func _on_action_result(result: Array[PackedInt32Array]) -> void:
 
 func _on_advance_state() -> void:
 	MouseSelection.deselect()
-	moveShips(_ships)
 	if current_state == GAME_STATE.PLAYER_TURN:
+		moveShips(_ships)
 		set_state(GAME_STATE.ENEMY_TURN)
 	else:
 		set_state(GAME_STATE.PLAYER_TURN)

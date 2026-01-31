@@ -66,7 +66,7 @@ func positionUpdated():
 	var center = positions.reduce(func(a,b):return a+b) /positions.size() 
 	global_position = targetBoard.cell_to_world(Vector2(center)+Vector2.ONE*0.5)
 	for it in range(0,flames.size()):
-		flames[it].global_position = targetBoard.cell_to_world(Vector2(positions[it])+Vector2.ONE*0.5)
+		flames[it].global_position = targetBoard.cell_to_world(Vector2(positionsHit[it])+Vector2.ONE*0.5)
 
 func hit(pos: Vector2i, isScan:bool)-> bool :
 	var it = positions.find(pos)
