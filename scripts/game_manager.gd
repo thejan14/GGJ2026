@@ -20,6 +20,7 @@ enum RESULT
 @export var cam: Camera2D
 @export var board: Board
 @export var map: Map
+@export var result_info: ResultInfo
 @export var tool_bar: Control
 @export var objects_container: Control
 @export var ready_info: Control
@@ -84,6 +85,7 @@ func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 
 func _on_action_result(result: Array[PackedInt32Array]) -> void:
 	print("Result received: %s" % [result])
+	result_info.set_result(result)
 
 func _on_ready_update() -> void:
 	var all_ready: bool = true
@@ -111,6 +113,7 @@ func transition_to_turn_state() -> void:
 		.set_ease(Tween.EASE_OUT)
 	await tween.finished
 	tool_bar.visible = true
+	result_info.visible = true
 	set_state(GAME_STATE.PLAYER_TURN if multiplayer.is_server() else GAME_STATE.ENEMY_TURN)
 
 func player_ready() -> void:

@@ -40,11 +40,12 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
 
-[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "map", "tool_bar", "objects_container", "ready_info", "ready_button", "host_name", "client_name", "host_ready", "client_ready", "board_target", "map_target")]
+[node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "map", "result_info", "tool_bar", "objects_container", "ready_info", "ready_button", "host_name", "client_name", "host_ready", "client_ready", "board_target", "map_target")]
 script = ExtResource("1_yqjtg")
 cam = NodePath("Camera2D")
 board = NodePath("Board")
 map = NodePath("Map")
+result_info = NodePath("ResultInfo")
 tool_bar = NodePath("ToolBar")
 objects_container = NodePath("Objects")
 ready_info = NodePath("ReadyInfo")
@@ -305,6 +306,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="ResultInfo" type="GridContainer" parent="." unique_id=1154093210]
+visible = false
 offset_left = 1653.0
 offset_top = 65.0
 offset_right = 1693.0
@@ -312,39 +314,3 @@ offset_bottom = 105.0
 columns = 3
 script = ExtResource("33_js0lu")
 result_sprites = Array[Texture2D]([null, ExtResource("34_02fa5"), ExtResource("25_pl11u"), ExtResource("36_nepv3"), ExtResource("37_7025r")])
-
-[node name="TextureRect" type="TextureRect" parent="ResultInfo" unique_id=2094278876]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect2" type="TextureRect" parent="ResultInfo" unique_id=347222925]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect3" type="TextureRect" parent="ResultInfo" unique_id=1620475398]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect4" type="TextureRect" parent="ResultInfo" unique_id=1978726251]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect5" type="TextureRect" parent="ResultInfo" unique_id=2083611267]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect6" type="TextureRect" parent="ResultInfo" unique_id=806402933]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect7" type="TextureRect" parent="ResultInfo" unique_id=1095020288]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect8" type="TextureRect" parent="ResultInfo" unique_id=1523237840]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
-
-[node name="TextureRect9" type="TextureRect" parent="ResultInfo" unique_id=826931326]
-layout_mode = 2
-texture = ExtResource("25_pl11u")
