@@ -30,7 +30,7 @@ func _input(event: InputEvent) -> void:
 		moveShips(shipsPlayer1)
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
-			if ship.place():
+			if ship.place() && ship.positions.all(func(p): return isfree(p)):
 				shipsPlayer1.append(ship)
 				ship.reparent(board)
 				MouseSelection.current_selection = null
