@@ -149,10 +149,9 @@ func get_action_result(pos: Vector2i, action: ActionMask.ACTION) -> RESULT:
 	if action == ActionMask.ACTION.EMPTY:
 		return RESULT.NO_RESULT
 	else:
-		var shipID = _ships.find_custom(func(ship:Ship) : ship.positions.any(func(p):p==pos))
-		if shipID != -1:
-			_ships[shipID].hit(pos)
-			return RESULT.SHIP_HIT if action == ActionMask.ACTION.HIT else RESULT.SHIP
-		elif bojen.find(pos) != -1 || ilands.find(pos) != -1:
+		for ship in _ships:
+			if ship.hit(pos):
+				return RESULT.SHIP_HIT if action == ActionMask.ACTION.HIT else RESULT.SHIP
+		if bojen.find(pos) != -1 || ilands.find(pos) != -1:
 			return RESULT.OBJECT
 	return RESULT.WATER
