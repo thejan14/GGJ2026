@@ -28,7 +28,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("RotateDown"):
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
-			#ship.rotateShip()
+			ship.rotateShip(Ship.ROTATION_DIR.LEFT)
+	if event.is_action_pressed("RotateUp"):
+		if  MouseSelection.current_selection is Ship:
+			var ship : Ship = MouseSelection.current_selection
+			ship.rotateShip(Ship.ROTATION_DIR.RIGHT)
 	if event.is_action_pressed("Cancel"):
 		if MouseSelection.current_selection != null:
 			MouseSelection.deselect()

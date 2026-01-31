@@ -2,6 +2,7 @@ class_name Ship
 
 extends CursorNode
 
+enum ROTATION_DIR{LEFT,RIGHT}
 
 
 const DIM:int = 3 
@@ -36,5 +37,15 @@ func place() -> void:
 	var refPos = targetBoard.world_to_cell(global_position)
 	positions = [refPos + dir,refPos,refPos - dir]
 
-func rotateShip() ->void :
-	pass
+func rotateShip(direction:ROTATION_DIR) ->void :
+	var rotationMatrix : Transform2D
+	if(direction == ROTATION_DIR.LEFT):
+		rotationMatrix.x = Vector2.DOWN
+		rotationMatrix.y = Vector2.LEFT
+		rotation+= PI/2
+	else:
+		rotationMatrix.x = Vector2.UP
+		rotationMatrix.y = Vector2.RIGHT
+		rotation-= PI/2
+	dir = rotationMatrix * Vector2(dir)
+	print(dir)
