@@ -1,3 +1,5 @@
+class_name ActionButton
+
 extends TextureButton
 
 @export var action_scene: PackedScene

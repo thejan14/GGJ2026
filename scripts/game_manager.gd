@@ -1,3 +1,5 @@
+class_name GameManager
+
 extends Node
 
 enum GAME_STATE
@@ -16,7 +18,7 @@ enum RESULT
 	SHIP_HIT = 4
 }
 
-
+signal state_changed(new_state: GAME_STATE)
 @export var cam: Camera2D
 @export var board: Board
 @export var map: Map
@@ -89,13 +91,14 @@ func _on_action_applied(pos: Vector2i, mask: Array[PackedInt32Array]) -> void:
 func _on_action_result(result: Array[PackedInt32Array]) -> void:
 	print("Result received: %s" % [result])
 	result_info.set_result(result)
+	MultiplayerManager.notify_advance_state.rpc()
 
 func _on_advance_state() -> void:
 	MouseSelection.deselect()
 	if current_state == GAME_STATE.PLAYER_TURN:
-		current_state = GAME_STATE.ENEMY_TURN
+		set_state(GAME_STATE.ENEMY_TURN)
 	else:
-		current_state = GAME_STATE.PLAYER_TURN
+		set_state(GAME_STATE.PLAYER_TURN)
 
 func _on_ready_update() -> void:
 	var all_ready: bool = true
@@ -131,6 +134,11 @@ func player_ready() -> void:
 
 func set_state(state: GAME_STATE) -> void:
 	current_state = state
+	state_changed.emit(current_state)
+	for child in tool_bar.find_children("*", "ActionButton", true):
+		if child is ActionButton:
+			child.disabled = state != GAME_STATE.PLAYER_TURN
+			child.modulate = Color(Color.WHITE, 0.4) if child.disabled else Color(Color.WHITE, 1.0)
 
 func isfree(pos : Vector2i) -> bool :
 	return !_ships.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))
