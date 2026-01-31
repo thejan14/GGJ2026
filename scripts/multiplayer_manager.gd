@@ -8,6 +8,7 @@ signal ready_update()
 signal action_applied(pos: Vector2i, mask: Array[PackedInt32Array])
 signal action_result(result: Array[PackedInt32Array])
 signal advance_state()
+signal action_hint(pos: Rect2i)
 
 const PORT = 28960
 const DEFAULT_SERVER_IP = "127.0.0.1" # IPv4 localhost
@@ -27,6 +28,10 @@ var player_info = {"name": "Name", "ready": false}
 
 var players_loaded = 0
 
+var last_action_hint: Rect2i
+var last_action_updated: bool
+var throttle_elapsed: float = 0.0
+
 func _ready():
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
@@ -34,6 +39,16 @@ func _ready():
 	multiplayer.connection_failed.connect(_on_connected_fail)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
+func _process(delta: float) -> void:
+	throttle_elapsed += delta
+	if last_action_updated and throttle_elapsed > 0.1:
+		update_action_hint.rpc_id(get_enemy_id(), last_action_hint)
+		last_action_updated = false
+		throttle_elapsed = 0.0
+		print("Update action cursor: %s" % last_action_hint)
+
+func get_enemy_id() -> int:
+	return client_player_id if multiplayer.is_server() else 1
 
 func join_game(address: String, player_name: String):
 	player_info["name"] = player_name
@@ -44,7 +59,6 @@ func join_game(address: String, player_name: String):
 	if error:
 		return error
 	multiplayer.multiplayer_peer = peer
-
 
 func create_game(player_name: String):
 	player_info["name"] = player_name
@@ -86,11 +100,14 @@ func notify_action_result(result: Array[PackedInt32Array]) -> void:
 func notify_advance_state(result: Array[PackedInt32Array]) -> void:
 	advance_state.emit()
 
+@rpc("any_peer", "reliable")
+func update_action_hint(pos: Rect2i) -> void:
+	action_hint.emit(pos)
+
 # When a peer connects, send them my player info.
 # This allows transfer of all desired data for each player, not only the unique ID.
 func _on_player_connected(id):
 	_register_player.rpc_id(id, player_info)
-
 
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):

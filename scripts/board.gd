@@ -4,6 +4,7 @@ extends Grid
 
 var cells: Array[Array] = []
 var highlightCells: Array[Vector2i]
+var enemy_action: Vector2i = Vector2i(-1, -1)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select"):
@@ -16,15 +17,17 @@ func _process(delta: float) -> void:
 		for cell in row:
 			var sprite: Sprite2D = cell
 			sprite.modulate = Color(Color.WHITE, 0.4)
-	#for cell in highlightCells:
-		#highlight(cell)
-	
+	queue_redraw()
 
 func highlight(target_cell :Vector2i):
 	if isValidPos(target_cell):
 		cells[target_cell.x][target_cell.y].modulate = Color.RED
 
+func _on_action_hint(new_action_hint: Rect2i) -> void:
+	action_hint = new_action_hint
+
 func _ready() -> void:
+	MultiplayerManager.action_hint.connect(_on_action_hint.bind())
 	for i in range(0, DIM):
 		var row: Array = []
 		for j in range(0, DIM):
