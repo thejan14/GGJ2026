@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ci5moltxb2smp"]
 
-[ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="1_vc7rc"]
+[ext_resource type="Texture2D" uid="uid://d1hm8x4uu78hp" path="res://art/Stempel_Objekt_Wasser.png" id="1_vc7rc"]
 [ext_resource type="Script" uid="uid://bmogla3ptgv26" path="res://scripts/marker.gd" id="2_n7iyq"]
 
 [node name="Marker" type="Sprite2D" unique_id=586237769]

@@ -49,6 +49,7 @@ func _input(event: InputEvent) -> void:
 		if MouseSelection.current_selection is ActionMask:
 			var action_mask: ActionMask = MouseSelection.current_selection
 			action_mask.place()
+			MouseSelection.deselect()
 	if event.is_action_pressed("RotateDown"):
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection

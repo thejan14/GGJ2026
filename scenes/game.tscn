@@ -3,21 +3,42 @@
 [ext_resource type="PackedScene" uid="uid://bg5ptytfsutot" path="res://scenes/board.tscn" id="1_uwrxv"]
 [ext_resource type="Script" uid="uid://d1beq52whxn1v" path="res://scripts/game_manager.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bmw6hxcb71v0c" path="res://scenes/map.tscn" id="3_ir15t"]
-[ext_resource type="Texture2D" uid="uid://bpyv3fg0f1bca" path="res://art/x.png" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://basevvjj3j3jf" path="res://scripts/marker_button.gd" id="4_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://b8ksxbxjgafp7" path="res://art/Stempel_Schiff_Legende.png" id="4_suyxu"]
 [ext_resource type="PackedScene" uid="uid://c8ct6mnuuadla" path="res://scenes/marker_ship.tscn" id="5_p57ef"]
-[ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://ci5moltxb2smp" path="res://scenes/marker_land.tscn" id="7_gee14"]
-[ext_resource type="Texture2D" uid="uid://4q335xxs2p" path="res://icon.svg" id="9_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://spqq8qt8424f" path="res://art/Stempel_Objekt_Legende.png" id="7_sgl2t"]
+[ext_resource type="Texture2D" uid="uid://dvxjyx7721kxt" path="res://art/Stempel_Pfeil_hoch_Legende_.png" id="9_qouja"]
+[ext_resource type="Texture2D" uid="uid://bye7bhajt0f7o" path="res://art/Maske_1.png" id="9_ssvqc"]
 [ext_resource type="Script" uid="uid://ejnjnlpo4nrh" path="res://scripts/action_button.gd" id="10_264po"]
+[ext_resource type="PackedScene" uid="uid://dh0a6ojkyl80p" path="res://scenes/marker_up.tscn" id="10_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cy63u4dvqwwm1" path="res://art/Ship_3.png" id="10_vtaks"]
-[ext_resource type="PackedScene" uid="uid://dc3djkj7vcb87" path="res://scenes/action_mask.tscn" id="11_1kice"]
+[ext_resource type="Texture2D" uid="uid://dm0a1uyimnquf" path="res://art/Stempel_Pfeil_rechts_Legende_.png" id="10_wljb1"]
+[ext_resource type="PackedScene" uid="uid://dc3djkj7vcb87" path="res://scenes/action_mask_1.tscn" id="11_1kice"]
 [ext_resource type="Script" uid="uid://ckjckdloxs5e8" path="res://scripts/ship_button.gd" id="11_kvpfn"]
 [ext_resource type="Texture2D" uid="uid://b1nlgt0i2p7y7" path="res://art/Ship_4.png" id="11_trtic"]
+[ext_resource type="Texture2D" uid="uid://c63oflpoo5wr" path="res://art/Stempel_Pfeil_runter_Legende.png" id="11_v2yb1"]
+[ext_resource type="PackedScene" uid="uid://q5c6do7m10q1" path="res://scenes/action_mask_2.tscn" id="12_5newe"]
 [ext_resource type="PackedScene" uid="uid://d0oaq8r1tik6s" path="res://scenes/ship.tscn" id="12_dinhu"]
+[ext_resource type="Texture2D" uid="uid://ocv33uyhpp20" path="res://art/Maske_2.png" id="12_e1j6l"]
+[ext_resource type="PackedScene" uid="uid://ca4x4vq1fche0" path="res://scenes/marker_right.tscn" id="12_gxtfn"]
+[ext_resource type="Texture2D" uid="uid://diasalfjfcii2" path="res://art/Stempel_Pfeil_links_Legende.png" id="12_js0lu"]
 [ext_resource type="PackedScene" uid="uid://ckmkxrm4886ht" path="res://scenes/ship4.tscn" id="12_trtic"]
+[ext_resource type="PackedScene" uid="uid://cojwfta4wcp4i" path="res://scenes/action_mask_3.tscn" id="13_37s47"]
 [ext_resource type="Texture2D" uid="uid://ieawwkkkkayx" path="res://art/Ship_5.png" id="13_ca42v"]
+[ext_resource type="PackedScene" uid="uid://d1ppskoqbdhoo" path="res://scenes/action_mask_4.tscn" id="14_bt5mj"]
+[ext_resource type="Texture2D" uid="uid://chdiwl646q318" path="res://art/Maske_3.png" id="14_pl11u"]
 [ext_resource type="PackedScene" uid="uid://ciioqr8q1ogev" path="res://scenes/ship_5.tscn" id="14_rysoc"]
+[ext_resource type="PackedScene" uid="uid://b3uq0bsahy1qd" path="res://scenes/marker_down.tscn" id="14_twgab"]
+[ext_resource type="PackedScene" uid="uid://c2akcidtgcjup" path="res://scenes/marker_left.tscn" id="16_02fa5"]
+[ext_resource type="Texture2D" uid="uid://fs3rydgoo6v6" path="res://art/Maske_4.png" id="16_bhx41"]
+[ext_resource type="Texture2D" uid="uid://crdehs64afue7" path="res://art/Maske_Objekt_erkannt.png" id="25_pl11u"]
+[ext_resource type="Script" uid="uid://flf2rrtjkyob" path="res://scenes/result_info.gd" id="33_js0lu"]
+[ext_resource type="Texture2D" uid="uid://5ab7fmhr4uo1" path="res://art/Maske_Wasser.png" id="34_02fa5"]
+[ext_resource type="Texture2D" uid="uid://bf5aekdwyiulu" path="res://art/Maske_Schiff_erkannt.png" id="36_nepv3"]
+[ext_resource type="Texture2D" uid="uid://dvpjx8lb3kubn" path="res://art/Maske_Treffer.png" id="37_7025r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_suyxu"]
 
 [node name="Game" type="Node" unique_id=798174569 node_paths=PackedStringArray("cam", "board", "map", "tool_bar", "objects_container", "ready_info", "ready_button", "host_name", "client_name", "host_ready", "client_ready", "board_target", "map_target")]
 script = ExtResource("1_yqjtg")
@@ -36,7 +57,7 @@ board_target = NodePath("BoardTarget")
 map_target = NodePath("MapTarget")
 
 [node name="Board" parent="." unique_id=1640674209 instance=ExtResource("1_uwrxv")]
-position = Vector2(607, 110)
+position = Vector2(556, 110)
 
 [node name="Map" parent="." unique_id=1685111805 instance=ExtResource("3_ir15t")]
 process_mode = 4
@@ -48,33 +69,88 @@ position = Vector2(1434, 626)
 scale = Vector2(0.5, 0.5)
 
 [node name="MapTarget" type="Marker2D" parent="." unique_id=2036846452]
-position = Vector2(607, 110)
+position = Vector2(556, 110)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=574924299]
 position = Vector2(960, 540)
 
 [node name="ToolBar" type="VBoxContainer" parent="." unique_id=372132904]
+visible = false
 offset_left = 74.0
 offset_top = 70.0
 offset_right = 114.0
 offset_bottom = 154.0
+alignment = 1
 
 [node name="ShipMarkerButton" type="TextureButton" parent="ToolBar" unique_id=713387751 node_paths=PackedStringArray("targetBoard")]
 layout_mode = 2
-texture_normal = ExtResource("3_u5sy4")
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("4_suyxu")
 script = ExtResource("4_lbhrr")
 marker_scene = ExtResource("5_p57ef")
 targetBoard = NodePath("../../Map")
 
 [node name="LandMarkerButton" type="TextureButton" parent="ToolBar" unique_id=463897540 node_paths=PackedStringArray("targetBoard")]
 layout_mode = 2
-texture_normal = ExtResource("6_gee14")
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("7_sgl2t")
 script = ExtResource("4_lbhrr")
 marker_scene = ExtResource("7_gee14")
 targetBoard = NodePath("../../Map")
 
+[node name="Arrows" type="GridContainer" parent="ToolBar" unique_id=549525087]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 32
+columns = 2
+
+[node name="UpMarkerButton" type="TextureButton" parent="ToolBar/Arrows" unique_id=1568991995 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("9_qouja")
+script = ExtResource("4_lbhrr")
+marker_scene = ExtResource("10_v2yb1")
+targetBoard = NodePath("../../../Map")
+
+[node name="RightMarkerButton" type="TextureButton" parent="ToolBar/Arrows" unique_id=700462845 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("10_wljb1")
+script = ExtResource("4_lbhrr")
+marker_scene = ExtResource("12_gxtfn")
+targetBoard = NodePath("../../../Map")
+
+[node name="DownMarkerButton" type="TextureButton" parent="ToolBar/Arrows" unique_id=1456572218 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("11_v2yb1")
+script = ExtResource("4_lbhrr")
+marker_scene = ExtResource("14_twgab")
+targetBoard = NodePath("../../../Map")
+
+[node name="LeftMarkerButton" type="TextureButton" parent="ToolBar/Arrows" unique_id=253689005 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 5
+texture_normal = ExtResource("12_js0lu")
+script = ExtResource("4_lbhrr")
+marker_scene = ExtResource("16_02fa5")
+targetBoard = NodePath("../../../Map")
+
+[node name="HSeparator" type="HSeparator" parent="ToolBar" unique_id=1254851874]
+layout_mode = 2
+theme_override_constants/separation = 48
+theme_override_styles/separator = SubResource("StyleBoxEmpty_suyxu")
+
 [node name="GridContainer" type="GridContainer" parent="ToolBar" unique_id=166008398]
 layout_mode = 2
+theme_override_constants/h_separation = 48
+theme_override_constants/v_separation = 48
 columns = 2
 
 [node name="Action1Button" type="TextureButton" parent="ToolBar/GridContainer" unique_id=2041441109 node_paths=PackedStringArray("targetBoard")]
@@ -82,6 +158,27 @@ layout_mode = 2
 texture_normal = ExtResource("9_ssvqc")
 script = ExtResource("10_264po")
 action_scene = ExtResource("11_1kice")
+targetBoard = NodePath("../../../Map")
+
+[node name="Action2Button" type="TextureButton" parent="ToolBar/GridContainer" unique_id=523135727 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+texture_normal = ExtResource("12_e1j6l")
+script = ExtResource("10_264po")
+action_scene = ExtResource("12_5newe")
+targetBoard = NodePath("../../../Map")
+
+[node name="Action3Button" type="TextureButton" parent="ToolBar/GridContainer" unique_id=2005539771 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+texture_normal = ExtResource("14_pl11u")
+script = ExtResource("10_264po")
+action_scene = ExtResource("13_37s47")
+targetBoard = NodePath("../../../Map")
+
+[node name="Action4Button" type="TextureButton" parent="ToolBar/GridContainer" unique_id=492455221 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 2
+texture_normal = ExtResource("16_bhx41")
+script = ExtResource("10_264po")
+action_scene = ExtResource("14_bt5mj")
 targetBoard = NodePath("../../../Map")
 
 [node name="Objects" type="Control" parent="." unique_id=753107533]
@@ -206,3 +303,48 @@ size_flags_horizontal = 3
 [node name="ReadyButton" type="Button" parent="." unique_id=398374337]
 offset_right = 8.0
 offset_bottom = 8.0
+
+[node name="ResultInfo" type="GridContainer" parent="." unique_id=1154093210]
+offset_left = 1653.0
+offset_top = 65.0
+offset_right = 1693.0
+offset_bottom = 105.0
+columns = 3
+script = ExtResource("33_js0lu")
+result_sprites = Array[Texture2D]([null, ExtResource("34_02fa5"), ExtResource("25_pl11u"), ExtResource("36_nepv3"), ExtResource("37_7025r")])
+
+[node name="TextureRect" type="TextureRect" parent="ResultInfo" unique_id=2094278876]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect2" type="TextureRect" parent="ResultInfo" unique_id=347222925]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect3" type="TextureRect" parent="ResultInfo" unique_id=1620475398]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect4" type="TextureRect" parent="ResultInfo" unique_id=1978726251]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect5" type="TextureRect" parent="ResultInfo" unique_id=2083611267]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect6" type="TextureRect" parent="ResultInfo" unique_id=806402933]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect7" type="TextureRect" parent="ResultInfo" unique_id=1095020288]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect8" type="TextureRect" parent="ResultInfo" unique_id=1523237840]
+layout_mode = 2
+texture = ExtResource("25_pl11u")
+
+[node name="TextureRect9" type="TextureRect" parent="ResultInfo" unique_id=826931326]
+layout_mode = 2
+texture = ExtResource("25_pl11u")

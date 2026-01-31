@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://b3uq0bsahy1qd"]
+
+[ext_resource type="Texture2D" uid="uid://bshl11gc48g17" path="res://art/Stempel_Pfeil_runter_Wasser.png" id="1_00rb2"]
+[ext_resource type="Script" uid="uid://bmogla3ptgv26" path="res://scripts/marker.gd" id="2_a8htl"]
+
+[node name="Marker" type="Sprite2D" unique_id=586237769]
+texture = ExtResource("1_00rb2")
+offset = Vector2(20, 20)
+script = ExtResource("2_a8htl")

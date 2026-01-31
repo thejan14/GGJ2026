@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c8ct6mnuuadla"]
 
-[ext_resource type="Texture2D" uid="uid://bpyv3fg0f1bca" path="res://art/x.png" id="1_dmgef"]
+[ext_resource type="Texture2D" uid="uid://bvrrpb87v04kw" path="res://art/Stempel_Schiff_Wasser.png" id="1_dmgef"]
 [ext_resource type="Script" uid="uid://bmogla3ptgv26" path="res://scripts/marker.gd" id="1_hy4mp"]
 
 [node name="Marker" type="Sprite2D" unique_id=586237769]

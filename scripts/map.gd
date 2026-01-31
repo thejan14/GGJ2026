@@ -40,5 +40,3 @@ func _draw() -> void:
 	for j in range(0, DIM + 1):
 		var column := j * CELL_SIZE
 		draw_line(Vector2(start, column), Vector2(end, column), Color.BLACK)
-	if hover_cell != NO_CELL:
-		draw_rect(Rect2(hover_cell * CELL_SIZE, Vector2.ONE * CELL_SIZE), Color.RED)

@@ -17,10 +17,13 @@ enum ACTION
 ]
 
 func setPosition(worldPos : Vector2)-> void:
-	global_position = worldPos
+	var cell = target_map.world_to_cell(worldPos)
+	global_position = target_map.cell_to_world(cell) if target_map.isValidPos(cell) else worldPos
+	global_position += (Vector2.ONE * target_map.CELL_SIZE) / 2.0
 
 func place() -> bool:
 	var pos := target_map.world_to_cell(global_position)
+	pos -= Vector2i(target_map.CELL_SIZE / 2, target_map.CELL_SIZE / 2)
 	var id = MultiplayerManager.client_player_id if multiplayer.is_server() else 1
 	MultiplayerManager.apply_action_mask.rpc_id(id, pos, mask)
 	return true
