@@ -2,6 +2,7 @@ extends Node
 
 @export var host_button: Button
 @export var connect_button: Button
+@export var start_button: Button
 @export var ip_input: LineEdit
 @export var ip_info: LineEdit
 @export var name_input: LineEdit
@@ -12,6 +13,7 @@ func _ready():
 	ip_info.text = "%s" % IP.get_local_addresses()[-1]
 	host_button.pressed.connect(create_game.bind())
 	connect_button.pressed.connect(join_game.bind())
+	start_button.pressed.connect(start_game.bind())
 	MultiplayerManager.player_connected.connect(_on_player_connected.bind())
 
 func _on_player_connected(peer_id: int, info: Dictionary) -> void:
@@ -25,3 +27,6 @@ func join_game():
 
 func create_game():
 	MultiplayerManager.create_game(name_input.text)
+
+func start_game() -> void:
+	MultiplayerManager.load_game(preload("uid://yicge48108e0"))

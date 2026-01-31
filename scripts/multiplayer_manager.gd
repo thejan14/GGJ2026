@@ -89,6 +89,10 @@ func _register_player(new_player_info):
 	player_connected.emit(new_player_id, new_player_info)
 	print("Successfully registerd player: %s" % new_player_id)
 
+@rpc("any_peer", "reliable")
+func _inform_ready() -> void:
+	multiplayer.is_server()
+
 func _on_player_disconnected(id):
 	players.erase(id)
 	player_disconnected.emit(id)
