@@ -14,6 +14,8 @@ const MAX_CONNECTIONS = 20
 # with the keys being each player's unique IDs.
 var players = {}
 
+var client_player_id: int
+
 # This is the local player info. This should be modified locally
 # before the connection is made. It will be passed to every other peer.
 # For example, the value of "name" can be set to something the player
@@ -89,6 +91,8 @@ func _on_player_connected(id):
 @rpc("any_peer", "reliable")
 func _register_player(new_player_info):
 	var new_player_id = multiplayer.get_remote_sender_id()
+	if new_player_id != 1:
+		client_player_id = new_player_id
 	players[new_player_id] = new_player_info
 	player_connected.emit(new_player_id, new_player_info)
 	print("Successfully registerd player: %s" % new_player_id)

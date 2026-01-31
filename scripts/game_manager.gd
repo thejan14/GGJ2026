@@ -46,9 +46,7 @@ func _input(event: InputEvent) -> void:
 func _ready() -> void:
 	if MultiplayerManager.players.size() > 0:
 		host_name.text = MultiplayerManager.players[1].name
-		var client_id = MultiplayerManager.players.keys().find_custom(func(id): return id != 1)
-		if client_id != -1:
-			client_name.text = MultiplayerManager.players[client_id].name
+		client_name.text = MultiplayerManager.players[MultiplayerManager.client_player_id].name
 	MultiplayerManager.ready_update.connect(_on_ready_update.bind())
 	ready_button.pressed.connect(player_ready.bind())
 	set_state(GAME_STATE.SETUP)
