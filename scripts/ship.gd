@@ -30,4 +30,11 @@ func set_state(state: STATE) -> void:
 
 func setPosition(worldPos : Vector2) -> void:
 	var cell = targetBoard.world_to_cell(worldPos)
-	global_position =  targetBoard.cell_to_world(Vector2(cell)+Vector2.ONE*0.5) if targetBoard.isValidPos(cell) else worldPos
+	global_position = targetBoard.cell_to_world(Vector2(cell)+Vector2.ONE*0.5) if targetBoard.isValidPos(cell) else worldPos
+
+func place() -> void:
+	var refPos = targetBoard.world_to_cell(global_position)
+	positions = [refPos + dir,refPos,refPos - dir]
+
+func rotateShip() ->void :
+	pass

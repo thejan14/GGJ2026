@@ -6,3 +6,6 @@ enum STATE { PREVIEW, PLACED }
 
 func setPosition(worldPos : Vector2)-> void:
 	pass
+
+func place() -> void:
+	pass

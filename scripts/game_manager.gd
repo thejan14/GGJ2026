@@ -8,6 +8,16 @@ extends Node
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select"):
 		moveShips(shipsPlayer1)
+		if  MouseSelection.current_selection is Ship:
+			var ship : Ship = MouseSelection.current_selection
+			ship.place()
+			shipsPlayer1.append(ship)
+			ship.reparent(board)
+			MouseSelection.current_selection = null
+	if event.is_action_pressed("RotateDown"):
+		if  MouseSelection.current_selection is Ship:
+			var ship : Ship = MouseSelection.current_selection
+			#ship.rotateShip()
 	if event.is_action_pressed("Cancel"):
 		if MouseSelection.current_selection != null:
 			MouseSelection.deselect()
