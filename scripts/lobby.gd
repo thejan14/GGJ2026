@@ -33,7 +33,7 @@ var players_loaded = 0
 func _ready():
 	ip_info.text = "Your IP: %s" % IP.get_local_addresses()[3]
 	host_button.pressed.connect(create_game.bind())
-	connect_button.pressed.connect(join_game.bind(ip_input.text))
+	connect_button.pressed.connect(join_game.bind())
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_ok)
@@ -42,7 +42,8 @@ func _ready():
 	player_connected.connect(func(peer_id, player_info): print(peer_id))
 
 
-func join_game(address = ""):
+func join_game():
+	var address := ip_input.text
 	if address.is_empty():
 		address = DEFAULT_SERVER_IP
 	var peer = ENetMultiplayerPeer.new()
