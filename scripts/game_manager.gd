@@ -43,7 +43,6 @@ var random = RandomNumberGenerator.new()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select"):
-		moveShips(_ships)
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
 			if ship.place() && ship.positions.all(func(p): return isfree(p)):
@@ -52,8 +51,8 @@ func _input(event: InputEvent) -> void:
 				MouseSelection.current_selection = null
 		if MouseSelection.current_selection is ActionMask:
 			var action_mask: ActionMask = MouseSelection.current_selection
-			action_mask.place()
-			MouseSelection.deselect()
+			if action_mask.place():
+				MouseSelection.deselect()
 	if event.is_action_pressed("RotateDown"):
 		if  MouseSelection.current_selection is Ship:
 			var ship : Ship = MouseSelection.current_selection
@@ -97,6 +96,7 @@ func _on_action_result(result: Array[PackedInt32Array]) -> void:
 
 func _on_advance_state() -> void:
 	MouseSelection.deselect()
+	moveShips(_ships)
 	if current_state == GAME_STATE.PLAYER_TURN:
 		set_state(GAME_STATE.ENEMY_TURN)
 	else:

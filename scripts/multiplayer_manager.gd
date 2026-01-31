@@ -45,7 +45,6 @@ func _process(delta: float) -> void:
 		update_action_hint.rpc_id(get_enemy_id(), last_action_hint)
 		last_action_updated = false
 		throttle_elapsed = 0.0
-		print("Update action cursor: %s" % last_action_hint)
 
 func get_enemy_id() -> int:
 	return client_player_id if multiplayer.is_server() else 1
