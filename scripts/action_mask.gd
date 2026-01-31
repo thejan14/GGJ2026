@@ -21,6 +21,7 @@ func setPosition(worldPos : Vector2)-> void:
 	if target_map.isValidPos(cell):
 		global_position = target_map.cell_to_world(cell)
 		var dim := mask[0].size()
+		var target = cell - Vector2i(mask.size() / 2, mask.size() / 2)
 		MultiplayerManager.last_action_hint = Rect2i(cell, Vector2i(dim, dim))
 	else:
 		global_position = worldPos
