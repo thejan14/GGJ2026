@@ -163,6 +163,7 @@ func move(ship : Ship)-> void:
 	var nextPos = ship.positions[0] + ship.dir
 	if board.isValidPos(nextPos) && isfree(nextPos):
 		ship.positions.assign(ship.positions.map(func(p)->Vector2i: return p + ship.dir ))
+		ship.positionsHit.assign(ship.positionsHit.map(func(p)->Vector2i: return p + ship.dir ))
 		board.highlightCells.assign(ship.positions)
 	else:
 		ship.positions.reverse()

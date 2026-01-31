@@ -13,6 +13,7 @@ enum ROTATION_DIR{LEFT,RIGHT}
 
 @export var targetBoard : Board
 var positionsHit: Array[Vector2i]
+var flames: Array[Sprite2D]
 
 func flip() ->void:
 	dir *= -1
@@ -63,10 +64,18 @@ func rotateShip(direction:ROTATION_DIR) ->void :
 func positionUpdated():
 	var center = positions.reduce(func(a,b):return a+b) /positions.size() 
 	global_position = targetBoard.cell_to_world(Vector2(center)+Vector2.ONE*0.5)
+	for it in range(0,flames.size()):
+		flames[it].global_position = targetBoard.cell_to_world(Vector2(positions[it])+Vector2.ONE*0.5)
 
 func hit(pos: Vector2i)-> bool :
 	var it = positions.find(pos)
 	if it != -1:
 		positionsHit.append(positions[it])
+		var sprite = Sprite2D.new()
+		sprite.texture = preload("res://art/Flamme.png")
+		sprite.z_index = 25
+		targetBoard.add_child(sprite)
+		sprite.global_position = targetBoard.cell_to_world(Vector2(positions[it])+Vector2.ONE*0.5)
+		flames.append(sprite)
 		return true
 	return false
