@@ -20,8 +20,8 @@ func _process(delta: float) -> void:
 			var sprite: Sprite2D = cell
 			sprite.modulate = Color(Color.WHITE, 0.4)
 	highlight(world_to_cell(get_global_mouse_position()))
-	for cell in highlightCells:
-		highlight(cell)
+	#for cell in highlightCells:
+		#highlight(cell)
 	
 
 func highlight(target_cell :Vector2i):
