@@ -7,5 +7,6 @@
 script = ExtResource("1_tx6nw")
 
 [node name="KarteMittig" type="Sprite2D" parent="." unique_id=512369160]
+z_index = -1
 texture = ExtResource("2_tx6nw")
 offset = Vector2(400.685, 376.915)
