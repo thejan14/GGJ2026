@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d1beq52whxn1v" path="res://scripts/game_manager.gd" id="1_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://bmw6hxcb71v0c" path="res://scenes/map.tscn" id="3_ir15t"]
 [ext_resource type="Texture2D" uid="uid://bpyv3fg0f1bca" path="res://art/x.png" id="3_u5sy4"]
-[ext_resource type="Script" uid="uid://basevvjj3j3jf" path="res://scripts/marker_button.gd" id="4_lbhrr"]
+[ext_resource type="Script" path="res://scripts/marker_button.gd" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c8ct6mnuuadla" path="res://scenes/marker_ship.tscn" id="5_p57ef"]
 [ext_resource type="Texture2D" uid="uid://cyrr03e76fiia" path="res://art/flag.png" id="6_gee14"]
 [ext_resource type="PackedScene" uid="uid://ci5moltxb2smp" path="res://scenes/marker_land.tscn" id="7_gee14"]
@@ -78,34 +78,78 @@ offset_top = 52.0
 offset_bottom = 407.0
 grow_horizontal = 0
 
-[node name="ShipButton" type="TextureButton" parent="Objects" unique_id=673901906 node_paths=PackedStringArray("targetBoard")]
+[node name="Ship3Button" type="TextureButton" parent="Objects" unique_id=673901906 node_paths=PackedStringArray("targetBoard")]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 28.0
-offset_right = 138.0
-offset_bottom = 151.0
+offset_left = 82.0
+offset_top = 22.0
+offset_right = 142.0
+offset_bottom = 145.0
 texture_normal = ExtResource("10_vtaks")
 script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("12_dinhu")
 targetBoard = NodePath("../../Board")
 
-[node name="ShipButton2" type="TextureButton" parent="Objects" unique_id=575102535 node_paths=PackedStringArray("targetBoard")]
+[node name="Ship3Button2" type="TextureButton" parent="Objects" unique_id=1197143535 node_paths=PackedStringArray("targetBoard")]
 layout_mode = 0
-offset_left = 187.0
-offset_top = 30.0
-offset_right = 247.0
-offset_bottom = 190.0
+offset_left = 82.0
+offset_top = 167.0
+offset_right = 142.0
+offset_bottom = 290.0
+texture_normal = ExtResource("10_vtaks")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("12_dinhu")
+targetBoard = NodePath("../../Board")
+
+[node name="Ship3Button3" type="TextureButton" parent="Objects" unique_id=2062219125 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 0
+offset_left = 161.0
+offset_top = 25.0
+offset_right = 221.0
+offset_bottom = 148.0
+texture_normal = ExtResource("10_vtaks")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("12_dinhu")
+targetBoard = NodePath("../../Board")
+
+[node name="Ship3Button4" type="TextureButton" parent="Objects" unique_id=72671642 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 166.0
+offset_right = 225.0
+offset_bottom = 289.0
+texture_normal = ExtResource("10_vtaks")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("12_dinhu")
+targetBoard = NodePath("../../Board")
+
+[node name="Ship4Button" type="TextureButton" parent="Objects" unique_id=575102535 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 0
+offset_left = 316.0
+offset_top = 26.0
+offset_right = 376.0
+offset_bottom = 186.0
 texture_normal = ExtResource("11_trtic")
 script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("12_trtic")
 targetBoard = NodePath("../../Board")
 
-[node name="ShipButton3" type="TextureButton" parent="Objects" unique_id=434420951 node_paths=PackedStringArray("targetBoard")]
+[node name="Ship4Button2" type="TextureButton" parent="Objects" unique_id=804509449 node_paths=PackedStringArray("targetBoard")]
 layout_mode = 0
-offset_left = 290.0
-offset_top = 36.0
-offset_right = 350.0
-offset_bottom = 236.0
+offset_left = 244.0
+offset_top = 27.0
+offset_right = 304.0
+offset_bottom = 187.0
+texture_normal = ExtResource("11_trtic")
+script = ExtResource("11_kvpfn")
+ship_scene = ExtResource("12_trtic")
+targetBoard = NodePath("../../Board")
+
+[node name="Ship5Button" type="TextureButton" parent="Objects" unique_id=434420951 node_paths=PackedStringArray("targetBoard")]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 26.0
+offset_right = 440.0
+offset_bottom = 226.0
 texture_normal = ExtResource("13_ca42v")
 script = ExtResource("11_kvpfn")
 ship_scene = ExtResource("14_rysoc")

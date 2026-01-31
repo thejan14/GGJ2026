@@ -11,3 +11,4 @@ func select_ship() -> void:
 	ship.set_state(Ship.STATE.PREVIEW)
 	ship.targetBoard = targetBoard
 	MouseSelection.select(ship)
+	queue_free()
