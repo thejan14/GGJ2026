@@ -15,4 +15,8 @@ func deselect() -> void:
 func _process(delta: float) -> void:
 	if current_selection != null:
 		var screen_pos := get_viewport().get_mouse_position()
-		current_selection.global_position = get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+		var worldPos = get_viewport().get_canvas_transform().affine_inverse() * screen_pos
+		var cursorNode = current_selection as CursorNode
+		if cursorNode != null:
+			cursorNode.setPosition(worldPos)
+		
