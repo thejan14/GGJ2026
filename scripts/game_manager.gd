@@ -36,9 +36,10 @@ signal state_changed(new_state: GAME_STATE)
 
 @export var _ships: Array[Ship]
 @export var bojen: Array[Ship]
-@export var ilands: Array[Ship]
+@export var islands: Array[Vector2i]
 
 var current_state: GAME_STATE
+var random = RandomNumberGenerator.new()
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Select"):
@@ -79,6 +80,7 @@ func _ready() -> void:
 	ready_button.pressed.connect(player_ready.bind())
 	set_state(GAME_STATE.SETUP)
 	cam.make_current()
+	placeIslands()
 	if not Engine.is_editor_hint():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 
@@ -140,8 +142,18 @@ func set_state(state: GAME_STATE) -> void:
 			child.disabled = state != GAME_STATE.PLAYER_TURN
 			child.modulate = Color(Color.WHITE, 0.4) if child.disabled else Color(Color.WHITE, 1.0)
 
+func isShipOnCell(pos : Vector2i) -> bool :
+	if _ships.is_empty():
+		return false
+	return _ships.find_custom(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))!=1
+
+func isIslandOnCell(pos : Vector2i) -> bool :
+	if _ships.is_empty():
+		return false
+	return !islands.any(func(p:Vector2i):return p == pos)
+
 func isfree(pos : Vector2i) -> bool :
-	return !_ships.any(func(ship:Ship):return ship.positions.any(func(p:Vector2i):return p == pos))
+	return !isShipOnCell(pos) && isIslandOnCell(pos)
 
 func move(ship : Ship)-> void:
 	var nextPos = ship.positions[0] + ship.dir
@@ -173,6 +185,34 @@ func get_action_result(pos: Vector2i, action: ActionMask.ACTION) -> RESULT:
 		for ship in _ships:
 			if ship.hit(pos):
 				return RESULT.SHIP_HIT if action == ActionMask.ACTION.HIT else RESULT.SHIP
-		if bojen.find(pos) != -1 || ilands.find(pos) != -1:
+		if bojen.find(pos) != -1 || islands.find(pos) != -1:
 			return RESULT.OBJECT
 	return RESULT.WATER
+
+func placeIslands():
+	# 2x2
+	var sprite = Sprite2D.new()
+	sprite.texture = preload("res://art/Inselgruppe_4.png")
+	sprite.z_index = 1
+	board.add_child(sprite)
+	var pos = Vector2i(random.randi_range(2,board.DIM-2),random.randi_range(2,board.DIM-2))
+	sprite.global_position = board.cell_to_world(pos)+ Vector2(40,40)
+	var positions : Array[Vector2i] = [pos, pos+Vector2i.RIGHT, pos+Vector2i.DOWN, pos+Vector2i.ONE] 
+	islands.append_array(positions)
+	board.highlightCells.assign(islands)
+	
+	## 2x3
+	#var sprite23 = Sprite2D.new()
+	#sprite23.texture = preload("res://art/Inselgruppe_4.png")
+	#sprite23.z_index = 1
+	#board.add_child(sprite23)
+	#var pos23 = Vector2i(random.randi_range(2,board.DIM-2),random.randi_range(2,board.DIM-2))
+	#sprite23.global_position = board.cell_to_world(pos)+ Vector2(40,40)
+	#var positions23 : Array[Vector2i] = [pos, pos+Vector2i.RIGHT, pos+Vector2i.DOWN, pos+Vector2i.ONE,pos+Vector2i.DOWN+Vector2i.DOWN, pos+Vector2i.ONE+Vector2i.DOWN] 
+	#while !(positions23.all(func(p): return isfree(p))):
+		#pos23 = Vector2i(random.randi_range(2,board.DIM-2),random.randi_range(2,board.DIM-2))
+		#sprite23.global_position = board.cell_to_world(pos)+ Vector2(40,40)
+		#positions23 = [pos, pos+Vector2i.RIGHT, pos+Vector2i.DOWN, pos+Vector2i.ONE,pos+Vector2i.DOWN+Vector2i.DOWN, pos+Vector2i.ONE+Vector2i.DOWN] 
+	#
+	#islands.append_array(positions)
+	#board.highlightCells.assign(islands)

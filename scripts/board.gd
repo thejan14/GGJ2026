@@ -18,6 +18,9 @@ func _process(delta: float) -> void:
 			var sprite: Sprite2D = cell
 			sprite.modulate = Color(Color.WHITE, 0.4)
 	queue_redraw()
+	#for cell in highlightCells:
+		#highlight(cell)
+
 
 func highlight(target_cell :Vector2i):
 	if isValidPos(target_cell):
