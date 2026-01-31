@@ -29,4 +29,4 @@ func create_game():
 	MultiplayerManager.create_game(name_input.text)
 
 func start_game() -> void:
-	MultiplayerManager.load_game(preload("uid://yicge48108e0"))
+	MultiplayerManager.load_game("res://scenes/game.tscn")
